@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-const User = require('../models/users');
+const User = require('../models/user');
 
 const { dbURI } = require('../config/environment');
 
@@ -12,6 +12,7 @@ mongoose.connect(dbURI, (err, db) => {
     name: 'Matt',
     email: 'm@m.com',
     password: 'm',
+    passwordConfirmation: 'm',
     gender: 'Male',
     seeking: 'All Genders',
     bio: 'Even though he is married he is looking for a fling',
@@ -20,6 +21,7 @@ mongoose.connect(dbURI, (err, db) => {
     name: 'Bridget',
     email: 'b@b.com',
     password: 'b',
+    passwordConfirmation: 'b',
     gender: 'Female',
     seeking: 'Men',
     bio: 'Do you like small australians? If you do come on down!',
