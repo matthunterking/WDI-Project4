@@ -2,28 +2,24 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 
-// will be a classical component because forms require state (handleChange etc)
+class AuthRegister extends React.Component {
 
-class AuthLogin extends React.Component {
-  state = {};
+  state = {}
 
-
-  handleChange = ({ target: { name, value } }) => {
+  handleChange = ({ target: {name, value }}) => {
     this.setState({ [name]: value });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('/api/login', this.state)
-      .then(res =>  {
+    axios.post('/api/register', this.state)
+      .then(res => {
         Auth.setToken(res.data.token);
       })
       .then(() => this.props.history.push('/users'))
-      .catch(() => {
-        this.props.history.push('/login');
-      });
-  }
+      .catch(() => this.props.history.replace('/login'));
+  };
 
   render() {
     return (
@@ -38,6 +34,14 @@ class AuthLogin extends React.Component {
         </div>
         <div className="field">
           <input
+            className="input"
+            name="username"
+            placeholder="username"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="field">
+          <input
             type="password"
             className="input"
             name="password"
@@ -45,10 +49,19 @@ class AuthLogin extends React.Component {
             onChange={this.handleChange}
           />
         </div>
+        <div className="field">
+          <input
+            type="password"
+            className="input"
+            name="passwordConfirmation"
+            placeholder="Password Confirmation"
+            onChange={this.handleChange}
+          />
+        </div>
         <button className="button is-primary">Submit</button>
       </form>
-    );
-  }
+      );
+}
 }
 
-export default AuthLogin;
+export default AuthRegister;

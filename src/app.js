@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import AuthLogin from './components/auth/Login';
+import AuthRegister from './components/auth/Register';
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
         <main>
           <h1>❤️ Destination Love ❤️</h1>
           <Route path="/login" component={AuthLogin} />
+          <Route path="/register" component={AuthRegister} />
         </main>
       </Router>
     );
