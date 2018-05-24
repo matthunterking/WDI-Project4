@@ -8,7 +8,14 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Transgender', 'Other', 'Prefer not to say']},
-  orientation: { type: String, }
+  seeking: { type: String, enum: ['Men', 'Women', 'All Genders'] },
+  bio: { type: String },
+  location: {
+    lat: { type: Number },
+    lng: { type: Number }
+  },
+  image: { type: String },
+  dateRequests: { type: String }
 });
 
 
@@ -61,3 +68,5 @@ module.exports = mongoose.model('User', userSchema);
 //   .set(function setPasswordConfirmation(passwordConfirmation){
 //     this._passwordConfirmation = passwordConfirmation;
 //   });
+
+module.exports = mongoose.model('User', userSchema);
