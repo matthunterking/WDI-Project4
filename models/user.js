@@ -68,5 +68,3 @@ module.exports = mongoose.model('User', userSchema);
 //   .set(function setPasswordConfirmation(passwordConfirmation){
 //     this._passwordConfirmation = passwordConfirmation;
 //   });
-
-module.exports = mongoose.model('User', userSchema);
