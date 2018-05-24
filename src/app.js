@@ -6,10 +6,17 @@ import {
   Switch
 } from 'react-router-dom';
 
+import AuthLogin from './components/auth/Login';
+
 class App extends React.Component {
   render() {
     return (
-      <h1>❤️ Destination Love ❤️</h1>
+      <Router>
+        <main>
+          <h1>❤️ Destination Love ❤️</h1>
+          <Route path="/login" component={AuthLogin} />
+        </main>
+      </Router>
     );
   }
 }
