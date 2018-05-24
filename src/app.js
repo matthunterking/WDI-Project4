@@ -8,15 +8,21 @@ import {
 
 import AuthLogin from './components/auth/Login';
 import AuthRegister from './components/auth/Register';
+import UsersIndex from './components/users/Index';
+
+import 'bulma';
 
 class App extends React.Component {
   render() {
     return (
       <Router>
         <main>
-          <h1>❤️ Destination Love ❤️</h1>
-          <Route path="/login" component={AuthLogin} />
-          <Route path="/register" component={AuthRegister} />
+          <h1 className='title is-1'>❤️ Destination Love ❤️</h1>
+          <Switch>
+            <Route path="/users" component={UsersIndex} />
+            <Route path="/login" component={AuthLogin} />
+            <Route path="/register" component={AuthRegister} />
+          </Switch>
         </main>
       </Router>
     );
