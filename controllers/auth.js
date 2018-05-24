@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
 function register(req, res, next) {
+  console.log(req.body);
   User.create(req.body)
     .then(user => {
-
       // creating the JWT and delivering the payload (sub user id)
       // secret is in the end part of the token
       // 'expiredIn' comes under the payload and is converted into seconds
