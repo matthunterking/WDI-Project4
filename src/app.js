@@ -13,6 +13,7 @@ import Auth from './lib/Auth';
 import Navbar from './components/Navbar';
 
 import 'bulma';
+import './scss/style.scss';
 
 class App extends React.Component {
 
