@@ -49,6 +49,7 @@
     "mongoose-unique-validator": "^2.0.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-edit-inline": "^1.0.8",
     "react-router-dom": "^4.2.2"
   },
   "repository": "git@github.com:matthunterking/WDI-Project4.git"

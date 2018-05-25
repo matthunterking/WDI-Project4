@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
+import UsersEdit from './components/users/Edit';
 
 import 'bulma';
 import './scss/style.scss';
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Navbar />
           <h1 className='title is-1'>❤️ Destination Love ❤️</h1>
           <Switch>
+            <Route path="/users/:id/edit" component={UsersEdit} />
             <Route path="/users/:id" component={UsersShow} />
             <Route path="/users" component={UsersIndex} />
             <Route path="/login" component={AuthLogin} />
