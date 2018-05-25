@@ -12,6 +12,7 @@ function showRoute(req, res, next){
   User
     .findById(req.params.id)
     .exec()
+    .populate('messages')
     .then(user => res.json(user))
     .catch(next);
 }
@@ -41,9 +42,23 @@ function updateRoute(req, res, next){
     .catch(next);
 }
 
+function sendMessage(req, res, next) {
+  req.body.from = req.currentUser;
+  User
+    .findById(req.body.to)
+    .exec()
+    .then(user => {
+      user.messages.push(req.body);
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   delete: deleteRoute,
-  update: updateRoute
+  update: updateRoute,
+  sendMessage: sendMessage
 };
