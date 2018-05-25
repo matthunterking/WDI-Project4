@@ -35,8 +35,8 @@ class AuthRegister extends React.Component {
         <div className="field">
           <input
             className="input"
-            name="username"
-            placeholder="username"
+            name="name"
+            placeholder="name"
             onChange={this.handleChange}
           />
         </div>
@@ -60,8 +60,8 @@ class AuthRegister extends React.Component {
         </div>
         <button className="button is-primary">Submit</button>
       </form>
-      );
-}
+    );
+  }
 }
 
 export default AuthRegister;
