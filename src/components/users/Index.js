@@ -17,15 +17,16 @@ class UsersIndex extends React.Component {
     return (
       <div>
         <h1>Index</h1>
-        {this.state.users.map(user =>
-          <div key={user.id} className="columns">
-            <div className="column">
-              <p>{user.image}</p>
-            </div>
-            <div className="column">
-              <p>{user.name}</p>
-            </div>
-          </div>)}
+        <div className="columns">
+          {this.state.users.map(user =>
+            <div key={user.id}>
+              <div className="heartframe column">
+                <div className="heartcontent" style={{ backgroundImage: `url(${user.image})`}}>
+                  <p className="title is-1">{user.name}</p>
+                </div>
+              </div>
+            </div>)}
+        </div>
       </div>
     );
   }
