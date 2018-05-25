@@ -14,7 +14,7 @@ router.route('/users/:id')
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
-router.route('/message')
-  .post(secureRoute, users.sendMessage);
+router.route('/message').post(secureRoute, users.sendMessage);
+router.route('/users/:id/message/:messageId').delete(secureRoute, users.deleteMessage);
 
 module.exports = router;

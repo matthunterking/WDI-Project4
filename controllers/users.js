@@ -11,8 +11,8 @@ function indexRoute(req, res, next){
 function showRoute(req, res, next){
   User
     .findById(req.params.id)
+    .populate('messages.from')
     .exec()
-    .populate('messages')
     .then(user => res.json(user))
     .catch(next);
 }
@@ -42,6 +42,9 @@ function updateRoute(req, res, next){
     .catch(next);
 }
 
+//add the loged in user's id to the request body under from
+//then push the body of the request into the other users message array
+//returns the whole of the to users record
 function sendMessage(req, res, next) {
   req.body.from = req.currentUser;
   User
@@ -55,10 +58,32 @@ function sendMessage(req, res, next) {
     .catch(next);
 }
 
+//Find the record of the user and populate the from field
+//Then find the message id of the selected message
+//If the person the message was sent to does not equal the current logged in user then throw error
+//If passed delete the message and save the record
+function deleteMessage(req, res, next) {
+  User
+    .findById(req.params.id)
+    .populate('messages.from')
+    .exec()
+    .then(user => {
+      const message = user.messages.id(req.params.messageId);
+      if(!message.to.equals(req.currentUser._id)) {
+        throw new Error('Unauthorized');
+      }
+      message.remove();
+      return user.save;
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   delete: deleteRoute,
   update: updateRoute,
-  sendMessage: sendMessage
+  sendMessage: sendMessage,
+  deleteMessage: deleteMessage
 };
