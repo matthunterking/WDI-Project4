@@ -62,9 +62,10 @@ class AuthRegister extends React.Component {
         <select
           className="select"
           onChange={this.handleChange}>
+          <option selected value="Male">Please Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
-          <option selected value="Non-binary">Non-binary</option>
+          <option value="Non-binary">Non-binary</option>
           <option value="Transgender">Transgender</option>
           <option value="Other">Other</option>
           <option value="Prefer not to say">Prefer not to say</option>
@@ -75,9 +76,10 @@ class AuthRegister extends React.Component {
         <select
           className="select"
           onChange={this.handleChange}>
+          <option selected value="Men">Please Select</option>
           <option value="Men">Men</option>
           <option value="Women">Women</option>
-          <option selected value="Both">Both</option>
+          <option value="Both">Both</option>
         </select>
         </label>
         <hr />

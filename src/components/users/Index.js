@@ -18,13 +18,14 @@ class UsersIndex extends React.Component {
       <div>
         <div className="columns">
           {this.state.users.map(user =>
-            <div key={user.id}>
+            <a key={user._id} href={`/users/${user._id}`}>
               <div className="heartframe column">
                 <div className="heartcontent" style={{ backgroundImage: `url(${user.image})`}}>
                   <p className="title is-1">{user.name}</p>
                 </div>
               </div>
-            </div>)}
+            </a>
+          )}
         </div>
       </div>
     );
