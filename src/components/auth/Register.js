@@ -58,6 +58,48 @@ class AuthRegister extends React.Component {
             onChange={this.handleChange}
           />
         </div>
+        <label>Please select your gender
+        <select
+          className="select"
+          onChange={this.handleChange}>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option selected value="Non-binary">Non-binary</option>
+          <option value="Transgender">Transgender</option>
+          <option value="Other">Other</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+        </label>
+        <hr />
+        <label>What are you seeking?
+        <select
+          className="select"
+          onChange={this.handleChange}>
+          <option value="Men">Men</option>
+          <option value="Women">Women</option>
+          <option selected value="Both">Both</option>
+        </select>
+        </label>
+        <hr />
+        <div className="field">
+          <input
+            type="textarea"
+            className="textarea"
+            name="bio"
+            placeholder="bio"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="field">
+          <input
+            type="input"
+            className="input"
+            name="photo"
+            placeholder="photo"
+            onChange={this.handleChange}
+          />
+        </div>
+
         <button className="button is-primary">Submit</button>
       </form>
     );

@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Transgender', 'Other', 'Prefer not to say']},
-  seeking: { type: String, enum: ['Men', 'Women', 'All Genders'] },
+  seeking: { type: String, enum: ['Men', 'Women', 'Both'] },
   bio: { type: String },
   location: {
     lat: { type: Number },

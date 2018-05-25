@@ -16,7 +16,6 @@ class UsersIndex extends React.Component {
   render() {
     return (
       <div>
-        <h1>Index</h1>
         <div className="columns">
           {this.state.users.map(user =>
             <div key={user.id}>

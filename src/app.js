@@ -20,7 +20,7 @@ class App extends React.Component {
   handleLogout = () => {
     Auth.logout();
   }
-  
+
   render() {
     return (
       <Router>
