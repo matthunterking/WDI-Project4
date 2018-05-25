@@ -16,7 +16,6 @@ class AuthLogin extends React.Component {
     e.preventDefault();
     axios.post('/api/login', this.state)
       .then(res =>  {
-        console.log(res.data);
         Auth.setToken(res.data.token);
       })
       .then(() => this.props.history.push('/users'))

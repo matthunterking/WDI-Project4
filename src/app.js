@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import AuthLogin from './components/auth/Login';
-// import Auth from './lib/Auth';
 import AuthRegister from './components/auth/Register';
 import UsersIndex from './components/users/Index';
 import Auth from './lib/Auth';
@@ -19,8 +18,8 @@ class App extends React.Component {
 
   handleLogout = () => {
     Auth.logout();
-
   }
+  
   render() {
     return (
       <Router>
