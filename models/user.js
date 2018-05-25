@@ -1,7 +1,29 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 mongoose.Promise = require('bluebird');
+const moment = require('moment');
 
+const messageSchema = new mongoose.Schema({
+  from: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  to: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  content: { type: String }
+},{
+  timestamps: true
+});
+
+messageSchema.virtual('sentAtRelative')
+  .get(function() {
+    return moment(this.createdAt).fromNow();
+  });
+
+messageSchema.set('toJSON', {
+  virtual: true,
+  transform(doc, json) {
+    delete json.createdAt;
+    delete json.updatedAt;
+    return json;
+  }
+});
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -15,10 +37,9 @@ const userSchema = new mongoose.Schema({
     lng: { type: Number }
   },
   image: { type: String },
-  dateRequests: { type: String }
+  dateRequests: { type: String },
+  messages: [ messageSchema ]
 });
-
-
 
 userSchema.plugin(require('mongoose-unique-validator'));
 
@@ -62,9 +83,3 @@ userSchema.pre('save', function hashPassword(next){
 });
 
 module.exports = mongoose.model('User', userSchema);
-//virtual for password confirmation
-// userSchema
-//   .virtual('passwordConfirmation')
-//   .set(function setPasswordConfirmation(passwordConfirmation){
-//     this._passwordConfirmation = passwordConfirmation;
-//   });
