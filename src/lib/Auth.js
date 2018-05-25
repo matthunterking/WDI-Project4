@@ -28,6 +28,8 @@ class Auth {
   }
 
   static isCurrentUser(user) {
+    console.log(`user in is current user ${user}`);
+    console.log(`get payload ${this.getPayload().sub}`);
     return this.isAuthenticated() && user._id === this.getPayload().sub;
   }
 }
