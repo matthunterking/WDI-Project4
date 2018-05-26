@@ -2,10 +2,30 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
+import ReactFilestack from 'filestack-react';
+
+const basicOptions = {
+  accept: 'image/*',
+  fromSources: ['local_file_system'],
+  maxSize: 1024 * 1024,
+  maxFiles: 1
+};
 
 class AuthRegister extends React.Component {
 
-  state = {};
+  state = {
+    image: null
+  };
+
+  onSuccess = (result) => {
+    this.setState({
+      image: result.filesUploaded[0].url
+    });
+  }
+
+    onError = (error) => {
+      console.error('error', error);
+    }
 
     handleChange = ({ target: { name, value } }) => {
       this.setState({ [name]: value });
@@ -97,16 +117,15 @@ class AuthRegister extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="field">
-            <input
-              type="file"
-              // className="input"
-              name="image"
-              placeholder="image"
-              onChange={this.handleChange}
-            />
-          </div>
-
+          <ReactFilestack
+            apikey="AOMNdTfLRb2JoY4KejONwz"
+            buttonText="Upload Photo"
+            buttonClass="ui medium button gray"
+            options={basicOptions}
+            onSuccess={this.onSuccess}
+            onChange={this.handleChange}
+            onError={this.onError}
+          />
           <button className="button is-primary">Submit</button>
         </form>
       );
