@@ -79,11 +79,27 @@ function deleteMessage(req, res, next) {
     .catch(next);
 }
 
+function sendMatchRequest(req, res, next) {
+  req.body.from = req.currentUser;
+  req.body.status = 'pending';
+  console.log(req.body);
+  User
+    .findById(req.body.to)
+    .exec()
+    .then(user => {
+      user.matches.push(req.body);
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   delete: deleteRoute,
   update: updateRoute,
   sendMessage: sendMessage,
-  deleteMessage: deleteMessage
+  deleteMessage: deleteMessage,
+  sendMatchRequest: sendMatchRequest
 };
