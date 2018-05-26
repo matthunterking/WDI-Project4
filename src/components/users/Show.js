@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import Messages from './Messages';
+import SendMessage from './SendMessage';
 // import InlineEdit from 'react-edit-inline';
 
 class UsersShow extends React.Component {
@@ -39,6 +41,8 @@ class UsersShow extends React.Component {
         <hr />
         <button>Edit</button>
         <button>Delete</button>
+        {Auth.isCurrentUser(user) && <Messages user={user}/> }
+        {!Auth.isCurrentUser(user) && <SendMessage user={user}/> }
       </main>
     );
   }
