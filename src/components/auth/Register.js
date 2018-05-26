@@ -3,6 +3,7 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 import ReactFilestack from 'filestack-react';
+const filestackAPI = process.env.FILESTACK_API_KEY;
 
 const basicOptions = {
   accept: 'image/*',
@@ -17,16 +18,11 @@ class AuthRegister extends React.Component {
     image: null
   };
 
-  onSuccess = (result) => {
-    this.setState({
-      image: result.filesUploaded[0].url
-    }); 
-  }
-
-    onError = (error) => {
-      console.error('error', error);
+    onSuccess = (result) => {
+      this.setState({
+        image: result.filesUploaded[0].url
+      });
     }
-
     handleChange = ({ target: { name, value } }) => {
       this.setState({ [name]: value });
     }
@@ -118,7 +114,7 @@ class AuthRegister extends React.Component {
             />
           </div>
           <ReactFilestack
-            apikey="AOMNdTfLRb2JoY4KejONwz"
+            apikey={filestackAPI}
             buttonText="Upload Photo"
             buttonClass="ui medium button gray"
             options={basicOptions}

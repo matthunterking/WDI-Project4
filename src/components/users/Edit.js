@@ -1,6 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import ReactFilestack from 'filestack-react';
+const filestackAPI = process.env.FILESTACK_API_KEY;
+
+const basicOptions = {
+  accept: 'image/*',
+  fromSources: ['local_file_system'],
+  maxSize: 1024 * 1024,
+  maxFiles: 1
+};
 
 class UsersEdit extends React.Component {
 
@@ -108,16 +117,15 @@ class UsersEdit extends React.Component {
             value={user.bio}
           />
         </div>
-        <div className="field">
-          <input
-            type="input"
-            className="input"
-            name="photo"
-            placeholder="photo"
-            onChange={this.handleChange}
-            value={user.image}
-          />
-        </div>
+        <ReactFilestack
+          apikey={filestackAPI}
+          buttonText="Upload Photo"
+          buttonClass="ui medium button gray"
+          options={basicOptions}
+          onSuccess={this.onSuccess}
+          onChange={this.handleChange}
+          onError={this.onError}
+        />
 
         <button className="button is-primary">Submit</button>
       </form>
