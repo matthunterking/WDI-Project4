@@ -14,10 +14,10 @@ mongoose.connect(dbURI, (err, db) => {
     password: 'm',
     passwordConfirmation: 'm',
     gender: 'Male',
-    seeking: 'All Genders',
+    seeking: 'Women',
     bio: 'Even though he is married he is looking for a fling',
     dateRequests: 'none',
-    image: 'https://www.petmd.com/sites/default/files/guide-to-guinea-pigs.jpg'
+    image: 'https://www.petmd.com/sites/default/files/guide-to-guinea-pigs.jpg' 
   },{
     name: 'Bridget',
     email: 'b@b.com',
