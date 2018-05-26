@@ -17,13 +17,15 @@ class UsersIndex extends React.Component {
   render() {
     return (
       <div>
-        <div className="columns">
+        <div className="columns is-multiline">
           {this.state.users.map(user =>
-            <div key={user._id}>
+            <div key={user._id} className='column is-one-third'>
               <Link to={`/users/${user._id}`}>
-                <div className="heartframe column">
-                  <div className="heartcontent" style={{ backgroundImage: `url(${user.image})`}}>
-                    <p className="title is-1">{user.name}</p>
+                <div className="indexFrame" style={{ backgroundImage: `url(${user.image})`}}>
+                  <div className="indexContent has-text-centered">
+                    <p className="is-size-2">{user.name}</p>
+                    <p className="is-size-3">{user.gender} {user.age}</p>
+                    <p className="is-size-3">Looking for {user.seeking}</p>
                   </div>
                 </div>
               </Link>

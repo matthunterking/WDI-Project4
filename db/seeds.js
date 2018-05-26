@@ -11,15 +11,17 @@ mongoose.connect(dbURI, (err, db) => {
   User.create([{
     name: 'Matt',
     email: 'm@m.com',
+    age: 32,
     password: 'm',
     passwordConfirmation: 'm',
     gender: 'Male',
     seeking: 'Women',
     bio: 'Even though he is married he is looking for a fling',
     dateRequests: 'none',
-    image: 'https://www.petmd.com/sites/default/files/guide-to-guinea-pigs.jpg' 
+    image: 'https://www.petmd.com/sites/default/files/guide-to-guinea-pigs.jpg'
   },{
     name: 'Bridget',
+    age: 26,
     email: 'b@b.com',
     password: 'b',
     passwordConfirmation: 'b',
