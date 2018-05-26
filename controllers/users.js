@@ -12,6 +12,9 @@ function showRoute(req, res, next){
   User
     .findById(req.params.id)
     .populate('messages.from')
+    .populate('pendingMatchRequests.userId')
+    .populate('acceptedMatchRequests.userId')
+    .populate('sentMatchRequests.userId')
     .exec()
     .then(user => res.json(user))
     .catch(next);
@@ -84,7 +87,7 @@ function sendMatchRequest(req, res, next) {
     .findById(req.currentUser._id)
     .exec()
     .then(user => {
-      user.sentMatchRequests.push(req.params.id);
+      user.sentMatchRequests.push({ userId: req.params.id });
       user.save();
     })
     .catch(next);
@@ -92,7 +95,7 @@ function sendMatchRequest(req, res, next) {
     .findById(req.params.id)
     .exec()
     .then(user => {
-      user.pendingMatchRequests.push(req.currentUser._id);
+      user.pendingMatchRequests.push({ userId: req.currentUser._id });
       return user.save();
     })
     .then(user => res.json(user))
@@ -100,13 +103,36 @@ function sendMatchRequest(req, res, next) {
 }
 
 function acceptMatchRequest(req, res, next) {
+  const currentUser = req.currentUser._id.toString();
+  const requestFromUser = req.params.id.toString();
+  User
+    .findById(currentUser)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
+      user.acceptedMatchRequests.push({ userId: requestFromUser});
+      user.save();
+    })
+    .catch(next);
+  User
+    .findById(requestFromUser)
+    .exec()
+    .then(user => {
+      user.sentMatchRequests.find(item => item.userId.toString() === currentUser).remove();
+      user.acceptedMatchRequests.push({ userId: currentUser });
+      user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
+function rejectMatchRequest(req, res, next) {
   User
     .findById(req.params.id)
     .exec()
     .then(user => {
       user.pendingMatchRequests.splice(user.pendingMatchRequests.indexOf(req.currentUser._id), 1 );
       user.sentMatchRequests.splice(user.sentMatchRequests.indexOf(req.currentUser._id), 1 );
-      user.acceptedMatchRequests.push(req.currentUser._id);
       user.save();
     });
   User
@@ -114,7 +140,6 @@ function acceptMatchRequest(req, res, next) {
     .exec()
     .then(user => {
       user.pendingMatchRequests.splice(user.pendingMatchRequests.indexOf(req.params.id), 1 );
-      user.acceptedMatchRequests.push(req.params.id);
       user.save();
     })
     .then(user => res.json(user))
@@ -131,5 +156,6 @@ module.exports = {
   sendMessage: sendMessage,
   deleteMessage: deleteMessage,
   sendMatchRequest: sendMatchRequest,
-  acceptMatchRequest: acceptMatchRequest
+  acceptMatchRequest: acceptMatchRequest,
+  rejectMatchRequest: rejectMatchRequest
 };
