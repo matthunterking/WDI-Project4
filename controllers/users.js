@@ -103,6 +103,8 @@ function sendMatchRequest(req, res, next) {
 function acceptMatchRequest(req, res, next) {
   const currentUser = req.currentUser._id.toString();
   const requestFromUser = req.params.id.toString();
+  console.log(currentUser);
+  console.log(requestFromUser);
   User
     .findById(requestFromUser)
     .exec()
