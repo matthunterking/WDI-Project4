@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import ReactFilestack from 'filestack-react';
-const filestackAPI = process.env.FILESTACK_API_KEY;
+// const filestackAPI = process.env.FILESTACK_API_KEY;
 
 const basicOptions = {
   accept: 'image/*',
@@ -118,7 +118,7 @@ class UsersEdit extends React.Component {
           />
         </div>
         <ReactFilestack
-          apikey={filestackAPI}
+          apikey="AOMNdTfLRb2JoY4KejONwz"
           buttonText="Upload Photo"
           buttonClass="ui medium button gray"
           options={basicOptions}

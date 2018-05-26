@@ -3,7 +3,7 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 import ReactFilestack from 'filestack-react';
-const filestackAPI = process.env.FILESTACK_API_KEY;
+// const filestackAPI = process.env.FILESTACK_API_KEY;
 
 const basicOptions = {
   accept: 'image/*',
@@ -114,7 +114,7 @@ class AuthRegister extends React.Component {
             />
           </div>
           <ReactFilestack
-            apikey={filestackAPI}
+            apikey="AOMNdTfLRb2JoY4KejONwz"
             buttonText="Upload Photo"
             buttonClass="ui medium button gray"
             options={basicOptions}
