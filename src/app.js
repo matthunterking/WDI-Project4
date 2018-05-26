@@ -33,6 +33,7 @@ class App extends React.Component {
           <section className="section">
             <div className="container">
               <Switch>
+                <Route path="/users/:id/edit" component={UsersEdit} />
                 <Route path="/users/:id" component={UsersShow} />
                 <Route path="/users" component={UsersIndex} />
                 <Route path="/login" component={AuthLogin} />

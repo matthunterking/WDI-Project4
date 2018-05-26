@@ -16,8 +16,8 @@ class UsersEdit extends React.Component {
     }
 
   handleChange = ({ target: { name, value } }) => {
-    // const errors = {...this.state.errors, [name]: ''};
-    this.setState({ [name]: value });
+    const errors = {...this.state.errors, [name]: ''};
+    this.setState({ errors, [name]: value });
   }
 
   handleSubmit = (e) => {
@@ -40,7 +40,7 @@ class UsersEdit extends React.Component {
         <div className="field">
           <input
             className="input"
-            name="email"
+            name="name"
             placeholder="Email"
             onChange={this.handleChange}
             value={user.name}
@@ -49,9 +49,10 @@ class UsersEdit extends React.Component {
         <div className="field">
           <input
             className="input"
-            name="name"
-            placeholder="name"
+            name="email"
+            placeholder="email"
             onChange={this.handleChange}
+            value={user.email}
           />
         </div>
         <div className="field">
@@ -76,7 +77,7 @@ class UsersEdit extends React.Component {
         <select
           className="select"
           onChange={this.handleChange}>
-          <option selected value="Male">Please Select</option>
+          <option selected value={user.gender}>{user.gender}</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Non-binary">Non-binary</option>
@@ -90,7 +91,7 @@ class UsersEdit extends React.Component {
         <select
           className="select"
           onChange={this.handleChange}>
-          <option selected value="Men">Please Select</option>
+          <option selected value={user.seeking}>{user.seeking}</option>
           <option value="Men">Men</option>
           <option value="Women">Women</option>
           <option value="Both">Both</option>
@@ -104,6 +105,7 @@ class UsersEdit extends React.Component {
             name="bio"
             placeholder="bio"
             onChange={this.handleChange}
+            value={user.bio}
           />
         </div>
         <div className="field">
@@ -113,12 +115,13 @@ class UsersEdit extends React.Component {
             name="photo"
             placeholder="photo"
             onChange={this.handleChange}
+            value={user.image}
           />
         </div>
 
         <button className="button is-primary">Submit</button>
       </form>
-    )
+    );
   }
 
 }
