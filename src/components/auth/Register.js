@@ -20,7 +20,7 @@ class AuthRegister extends React.Component {
   onSuccess = (result) => {
     this.setState({
       image: result.filesUploaded[0].url
-    });
+    }); 
   }
 
     onError = (error) => {
