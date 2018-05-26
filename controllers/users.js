@@ -3,6 +3,7 @@ const User = require('../models/user');
 function indexRoute(req, res, next){
   User
     .find()
+    .populate('messages.from pendingMatchRequests.userId pendingMatchRequests.userId acceptedMatchRequests.userId sentMatchRequests.userId')
     .exec()
     .then(users => res.json(users))
     .catch(next);
@@ -11,10 +12,7 @@ function indexRoute(req, res, next){
 function showRoute(req, res, next){
   User
     .findById(req.params.id)
-    .populate('messages.from')
-    .populate('pendingMatchRequests.userId')
-    .populate('acceptedMatchRequests.userId')
-    .populate('sentMatchRequests.userId')
+    .populate('messages.from pendingMatchRequests.userId pendingMatchRequests.userId acceptedMatchRequests.userId sentMatchRequests.userId')
     .exec()
     .then(user => res.json(user))
     .catch(next);
@@ -106,15 +104,6 @@ function acceptMatchRequest(req, res, next) {
   const currentUser = req.currentUser._id.toString();
   const requestFromUser = req.params.id.toString();
   User
-    .findById(currentUser)
-    .exec()
-    .then(user => {
-      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
-      user.acceptedMatchRequests.push({ userId: requestFromUser});
-      user.save();
-    })
-    .catch(next);
-  User
     .findById(requestFromUser)
     .exec()
     .then(user => {
@@ -122,31 +111,40 @@ function acceptMatchRequest(req, res, next) {
       user.acceptedMatchRequests.push({ userId: currentUser });
       user.save();
     })
-    .then(user => res.json(user))
     .catch(next);
-}
-
-function rejectMatchRequest(req, res, next) {
   User
-    .findById(req.params.id)
+    .findById(currentUser)
     .exec()
     .then(user => {
-      user.pendingMatchRequests.splice(user.pendingMatchRequests.indexOf(req.currentUser._id), 1 );
-      user.sentMatchRequests.splice(user.sentMatchRequests.indexOf(req.currentUser._id), 1 );
-      user.save();
-    });
-  User
-    .findById(req.currentUser._id)
-    .exec()
-    .then(user => {
-      user.pendingMatchRequests.splice(user.pendingMatchRequests.indexOf(req.params.id), 1 );
+      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
+      user.acceptedMatchRequests.push({ userId: requestFromUser});
       user.save();
     })
     .then(user => res.json(user))
     .catch(next);
 }
 
-
+function rejectMatchRequest(req, res, next) {
+  const currentUser = req.currentUser._id.toString();
+  const requestFromUser = req.params.id.toString();
+  User
+    .findById(requestFromUser)
+    .exec()
+    .then(user => {
+      user.sentMatchRequests.find(item => item.userId.toString() === currentUser).remove();
+      user.save();
+    })
+    .catch(next);
+  User
+    .findById(currentUser)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
+      user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
 
 module.exports = {
   index: indexRoute,
