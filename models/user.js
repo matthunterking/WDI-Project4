@@ -26,10 +26,10 @@ messageSchema.set('toJSON', {
 });
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
+  name: { type: String, required: 'This field os required.' },
+  email: { type: String, required: 'This field os required.' },
   age: { type: Number },
-  password: { type: String, required: true },
+  password: { type: String, required: 'This field os required.' },
   gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Transgender', 'Other', 'Prefer not to say']},
   seeking: { type: String, enum: ['Men', 'Women', 'Both'] },
   bio: { type: String },

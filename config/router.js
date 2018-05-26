@@ -8,8 +8,8 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(users.show)
-  .delete(users.delete)
-  .put(users.update);
+  .delete(secureRoute, users.delete)
+  .put(secureRoute, users.update);
 
 router.post('/register', auth.register);
 router.post('/login', auth.login);

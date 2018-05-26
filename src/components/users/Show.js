@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import { Link } from 'react-router-dom';
 // import InlineEdit from 'react-edit-inline';
 
 class UsersShow extends React.Component {
@@ -13,6 +14,14 @@ class UsersShow extends React.Component {
     // console.log(this.props.match.params.id);
     axios.get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({ user: res.data }));
+  }
+
+  handleDelete = () => {
+    axios
+      .delete(`/api/users/${this.props.match.params.id}`, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}`}
+      })
+      .then(() => this.props.history.push('/users'));
   }
 
   handleSubmit = (e) => {
@@ -37,8 +46,10 @@ class UsersShow extends React.Component {
         <p className="subtitle"><strong>Seeking:</strong> {user.seeking}</p>
         <img src={user.image} />
         <hr />
-        <button>Edit</button>
-        <button>Delete</button>
+        <Link to={`/users/${user._id}/edit`}
+          className="button"
+        >Edit</Link>
+        <button className="button is-danger" onClick={this.handleDelete} >Delete</button>
       </main>
     );
   }

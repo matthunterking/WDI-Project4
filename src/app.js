@@ -15,6 +15,7 @@ import Home from './components/Home';
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 import UsersEdit from './components/users/Edit';
+import FlashMessages from './components/common/FlashMessages';
 
 import 'bulma';
 import './scss/style.scss';
@@ -30,6 +31,7 @@ class App extends React.Component {
       <Router>
         <main>
           <Navbar />
+          <FlashMessages />
           <section className="section">
             <div className="container">
               <Switch>

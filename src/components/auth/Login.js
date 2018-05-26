@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import Flash from '../../lib/Flash';
 
 // will be a classical component because forms require state (handleChange etc)
 
@@ -14,12 +15,15 @@ class AuthLogin extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     axios.post('/api/login', this.state)
       .then(res =>  {
         Auth.setToken(res.data.token);
+        Flash.setMessage('info', res.data.message);
       })
-      .then(() => this.props.history.push('/users'))
+      .then(() => this.props.history.push('/burgers'))
       .catch(() => {
+        Flash.setMessage('danger', 'Invalid credentials');
         this.props.history.push('/login');
       });
   }
