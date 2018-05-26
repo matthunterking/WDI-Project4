@@ -25,12 +25,6 @@ messageSchema.set('toJSON', {
   }
 });
 
-const matchSchema = new mongoose.Schema({
-  from: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  to: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  status: { type: String, enum: ['pending', 'accepted', 'rejected'] }
-});
-
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -46,7 +40,9 @@ const userSchema = new mongoose.Schema({
   image: { type: String },
   dateRequests: { type: String },
   messages: [ messageSchema ],
-  matches: [ matchSchema ]
+  pendingMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
+  acceptedMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
+  sentMatchRequests: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 userSchema.plugin(require('mongoose-unique-validator'));

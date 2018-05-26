@@ -80,19 +80,48 @@ function deleteMessage(req, res, next) {
 }
 
 function sendMatchRequest(req, res, next) {
-  req.body.from = req.currentUser;
-  req.body.status = 'pending';
-  console.log(req.body);
   User
-    .findById(req.body.to)
+    .findById(req.currentUser._id)
     .exec()
     .then(user => {
-      user.matches.push(req.body);
+      user.sentMatchRequests.push(req.params.id);
+      user.save();
+    })
+    .catch(next);
+  User
+    .findById(req.params.id)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.push(req.currentUser._id);
       return user.save();
     })
     .then(user => res.json(user))
     .catch(next);
 }
+
+function acceptMatchRequest(req, res, next) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.splice(user.pendingMatchRequests.indexOf(req.currentUser._id), 1 );
+      user.sentMatchRequests.splice(user.sentMatchRequests.indexOf(req.currentUser._id), 1 );
+      user.acceptedMatchRequests.push(req.currentUser._id);
+      user.save();
+    });
+  User
+    .findById(req.currentUser._id)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.splice(user.pendingMatchRequests.indexOf(req.params.id), 1 );
+      user.acceptedMatchRequests.push(req.params.id);
+      user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
+
 
 module.exports = {
   index: indexRoute,
@@ -101,5 +130,6 @@ module.exports = {
   update: updateRoute,
   sendMessage: sendMessage,
   deleteMessage: deleteMessage,
-  sendMatchRequest: sendMatchRequest
+  sendMatchRequest: sendMatchRequest,
+  acceptMatchRequest: acceptMatchRequest
 };
