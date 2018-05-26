@@ -1,3 +1,11 @@
+@import 'helpers/variables';
+
+body {
+  background-color: $pastelpink;
+  color: #0F0037;
+  min-height: 100vh;
+}
+
 .heartframe {
   background-image: url('/assets/heartframe.png');
   background-size: cover;
