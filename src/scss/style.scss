@@ -1,9 +1,31 @@
 @import 'helpers/variables';
 
 body {
-  background-color: $pastelpink;
-  color: #0F0037;
+  background: linear-gradient(to top left, $lightpink, $pastelpink);;
   min-height: 100vh;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.title {
+  color: white;
+}
+
+.navbar {
+  background-color: transparent;
+}
+
+.navbar-item {
+  text-align: center;
+}
+
+.homeOptions {
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 20vh;
+  text-align: center;
+  border: 4px groove $red;
+  padding: 20px;
+  border-radius: 5%;
 }
 
 .heartframe {

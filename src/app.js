@@ -10,6 +10,7 @@ import AuthLogin from './components/auth/Login';
 import AuthRegister from './components/auth/Register';
 import Auth from './lib/Auth';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
@@ -28,13 +29,17 @@ class App extends React.Component {
       <Router>
         <main>
           <Navbar />
-          <h1 className='title is-1'>❤️ Destination Love ❤️</h1>
-          <Switch>
-            <Route path="/users/:id" component={UsersShow} />
-            <Route path="/users" component={UsersIndex} />
-            <Route path="/login" component={AuthLogin} />
-            <Route path="/register" component={AuthRegister} />
-          </Switch>
+          <section className="section">
+            <div className="container">
+              <Switch>
+                <Route path="/users/:id" component={UsersShow} />
+                <Route path="/users" component={UsersIndex} />
+                <Route path="/login" component={AuthLogin} />
+                <Route path="/register" component={AuthRegister} />
+                <Route path="/" component={Home} />
+              </Switch>
+            </div>
+          </section>
         </main>
       </Router>
     );
