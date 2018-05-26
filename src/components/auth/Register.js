@@ -99,8 +99,8 @@ class AuthRegister extends React.Component {
           </div>
           <div className="field">
             <input
-              type="input"
-              className="input"
+              type="file"
+              // className="input"
               name="image"
               placeholder="image"
               onChange={this.handleChange}
