@@ -30,18 +30,14 @@ class App extends React.Component {
       <Router>
         <main>
           <FlashMessages />
-          <section className="section">
-            <div className="container">
-              <Switch>
-                <Route path="/users/:id/edit" component={UsersEdit} />
-                <Route path="/users/:id" component={UsersShow} />
-                <Route path="/users" component={UsersIndex} />
-                <Route path="/login" component={AuthLogin} />
-                <Route path="/register" component={AuthRegister} />
-                <Route path="/" component={Home} />
-              </Switch>
-            </div>
-          </section>
+          <Switch>
+            <Route path="/users/:id/edit" component={UsersEdit} />
+            <Route path="/users/:id" component={UsersShow} />
+            <Route path="/users" component={UsersIndex} />
+            <Route path="/login" component={AuthLogin} />
+            <Route path="/register" component={AuthRegister} />
+            <Route path="/" component={Home} />
+          </Switch>
         </main>
       </Router>
     );

@@ -1,9 +1,12 @@
 @import 'helpers/variables';
+@import 'components/home';
+@import 'partials/buttons';
 
 body {
-  background: linear-gradient(to top left, $lightpink, $pastelpink);;
+  background: linear-gradient(to top left, $lightpink, $pastelpink);
   min-height: 100vh;
   font-family: 'Kaushan Script', cursive;
+  color: white;
 }
 
 .title {
@@ -16,14 +19,6 @@ body {
 
 .navbar-item {
   text-align: center;
-}
-
-.homeOptions {
-  width: 40%;
-  margin-left: 30%;
-  margin-top: 20vh;
-  text-align: center;
-  padding: 20px;
 }
 
 .indexFrame {
