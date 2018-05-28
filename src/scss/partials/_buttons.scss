@@ -7,9 +7,21 @@
 }
 
 .redirectButton {
-  background-color: #54C6A8;
+  background-color: $green;
   border: 2px solid white;
   font-family: 'Kaushan Script', cursive;
   color: white;
   width: 100%;
+}
+
+.redButton {
+  background-color: $red;
+  border: 2px solid white;
+  font-family: 'Kaushan Script', cursive;
+  color: white;
+  width: 100%;
+}
+
+.backButton {
+  background-color: white;
 }

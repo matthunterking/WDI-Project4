@@ -47,7 +47,7 @@ class AuthRegister extends React.Component {
         <div className="columns">
           <div className="column brandPanel" />
           <div className="column infoPanel home">
-            <h1 className='is-size-1'>Your first step in finding love</h1>
+            <h1 className='is-size-1 featureText'>Your first step in finding love</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="field">
                 <input
@@ -84,7 +84,7 @@ class AuthRegister extends React.Component {
                 />
               </div>
               <div className="selectionField">
-                <label htmlFor="gender">Please select your gender</label>
+                <label htmlFor="gender" className="featureText">Please select your gender</label>
                 <select
                   name="gender"
                   className="select"
@@ -100,7 +100,7 @@ class AuthRegister extends React.Component {
               </div>
               <hr />
               <div className="selectionField">
-                <label>Who are you looking for?</label>
+                <label htmlFor="seeking" className="featureText">Who are you looking for?</label>
                 <select
                   className="select"
                   onChange={this.handleChange}

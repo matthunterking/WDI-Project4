@@ -3,15 +3,17 @@
 @import 'components/home';
 @import 'components/register';
 @import 'components/index';
+@import 'components/profile';
 @import 'components/viewprofile';
 @import 'partials/buttons';
 @import 'partials/navbar';
 
 
 body {
+  background: linear-gradient(to top left, $lightpink, $pastelpink);
   min-height: 100vh;
-  font-family: 'Kaushan Script', cursive;
   color: white;
+  box-sizing: border-box;
 }
 
 .title {
