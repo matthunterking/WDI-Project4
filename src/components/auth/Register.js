@@ -44,86 +44,98 @@ class AuthRegister extends React.Component {
 
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
-          <div className="field">
-            <input
-              className="input"
-              name="email"
-              placeholder="Email"
-              onChange={this.handleChange}
-            />
+        <div className="columns">
+          <div className="column brandPanel" />
+          <div className="column infoPanel home">
+            <h1 className='is-size-1 featureText'>Your first step in finding love</h1>
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <input
+                  className="input"
+                  name="name"
+                  placeholder="Name"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="field">
+                <input
+                  className="input"
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="field">
+                <input
+                  type="password"
+                  className="input"
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="field">
+                <input
+                  type="password"
+                  className="input"
+                  name="passwordConfirmation"
+                  placeholder="Password Confirmation"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="selectionField">
+                <label htmlFor="gender" className="featureText">Please select your gender</label>
+                <select
+                  name="gender"
+                  className="select"
+                  onChange={this.handleChange}>
+                  <option selected value="Male">Please Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Non-binary">Non-binary</option>
+                  <option value="Transgender">Transgender</option>
+                  <option value="Other">Other</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
+              <hr />
+              <div className="selectionField">
+                <label htmlFor="seeking" className="featureText">Who are you looking for?</label>
+                <select
+                  className="select"
+                  onChange={this.handleChange}
+                  name="seeking">
+                  <option selected value="Men">Please Select</option>
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                  <option value="Both">Both</option>
+                </select>
+              </div>
+              <hr />
+              <div className="field">
+                <input
+                  type="textarea"
+                  className="textarea"
+                  name="bio"
+                  placeholder="Tell use about yourself"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="registerNav">
+                <ReactFilestack
+                  apikey="AOMNdTfLRb2JoY4KejONwz"
+                  buttonText="Upload Photo"
+                  buttonClass="button redirectButton"
+                  options={basicOptions}
+                  onSuccess={this.onSuccess}
+                  onChange={this.handleChange}
+                  onError={this.onError}
+                />
+                <button className="button submitButton">Submit</button>
+              </div>
+            </form>
           </div>
-          <div className="field">
-            <input
-              className="input"
-              name="name"
-              placeholder="name"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="field">
-            <input
-              type="password"
-              className="input"
-              name="password"
-              placeholder="Password"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="field">
-            <input
-              type="password"
-              className="input"
-              name="passwordConfirmation"
-              placeholder="Password Confirmation"
-              onChange={this.handleChange}
-            />
-          </div>
-          <label>Please select your gender
-          <select
-            className="select"
-            onChange={this.handleChange}>
-            <option selected value="Male">Please Select</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Non-binary">Non-binary</option>
-            <option value="Transgender">Transgender</option>
-            <option value="Other">Other</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
-          </label>
-          <hr />
-          <label>What are you seeking?
-          <select
-            className="select"
-            onChange={this.handleChange}>
-            <option selected value="Men">Please Select</option>
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
-            <option value="Both">Both</option>
-          </select>
-          </label>
-          <hr />
-          <div className="field">
-            <input
-              type="textarea"
-              className="textarea"
-              name="bio"
-              placeholder="bio"
-              onChange={this.handleChange}
-            />
-          </div>
-          <ReactFilestack
-            apikey="AOMNdTfLRb2JoY4KejONwz"
-            buttonText="Upload Photo"
-            buttonClass="ui medium button gray"
-            options={basicOptions}
-            onSuccess={this.onSuccess}
-            onChange={this.handleChange}
-            onError={this.onError}
-          />
-          <button className="button is-primary">Submit</button>
-        </form>
+        </div>
       );
     }
 }

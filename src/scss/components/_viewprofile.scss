@@ -1,0 +1,55 @@
+.leftpanel {
+  position: relative;
+  min-height: 70vh;
+  animation-name: leftpanel;
+  animation-duration: 0.1s;
+  margin-top: 1vh;
+}
+
+.rightpanel {
+  position: relative;
+  min-height: 70vh;
+  animation-name: rightpanel;
+  animation-duration: 0.1s;
+  margin-top: 1vh;
+  background: linear-gradient(to top left, $lightpink, $pastelpink);
+  padding: 0% 5%;
+}
+
+.profilePanel {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.bio {
+  min-height: 20vh;
+}
+
+.showtitle {
+  width: 100%;
+  border-bottom: 1px solid $navy;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@keyframes leftpanel {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes rightpanel {
+  0% {
+    left: 100%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}

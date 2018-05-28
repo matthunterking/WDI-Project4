@@ -1,12 +1,27 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import AuthLogin from './auth/Login';
 
 const Home = () => {
   return (
-    <div className="homeOptions">
-      <h1 className='title is-1'>Destination ❤️ Love</h1>
-      <Link to="/register" className="navbar-item">Register</Link>
-      <Link to="/login" className="navbar-item">Login</Link>
+    <div className="columns home">
+      <div className="column brandPanel" />
+      <div className="column infoPanel">
+        <div>
+          <h3 className='is-size-1 featureText'>Destination ❤️ Love</h3>
+          <hr />
+          <p className="is-size-4 featureText">Welcome to Desitination Love. We take away all the awkwardness of finding
+        somewhere to go on your date by giving you geographically convineent options!</p>
+        </div>
+        <div className="homeNav">
+          <AuthLogin />
+          <div className="registerContainer">
+            <Link className="button redirectButton" to="/register">
+            Not registered? Join now!
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
