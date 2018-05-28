@@ -3,6 +3,7 @@ const User = require('../models/user');
 function indexRoute(req, res, next){
   User
     .find()
+    .populate('messages.from pendingMatchRequests.userId pendingMatchRequests.userId acceptedMatchRequests.userId sentMatchRequests.userId')
     .exec()
     .then(users => res.json(users))
     .catch(next);
@@ -11,7 +12,7 @@ function indexRoute(req, res, next){
 function showRoute(req, res, next){
   User
     .findById(req.params.id)
-    .populate('messages.from')
+    .populate('messages.from pendingMatchRequests.userId pendingMatchRequests.userId acceptedMatchRequests.userId sentMatchRequests.userId')
     .exec()
     .then(user => res.json(user))
     .catch(next);
@@ -79,11 +80,82 @@ function deleteMessage(req, res, next) {
     .catch(next);
 }
 
+function sendMatchRequest(req, res, next) {
+  User
+    .findById(req.currentUser._id)
+    .exec()
+    .then(user => {
+      user.sentMatchRequests.push({ userId: req.params.id });
+      user.save();
+    })
+    .catch(next);
+  User
+    .findById(req.params.id)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.push({ userId: req.currentUser._id });
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
+function acceptMatchRequest(req, res, next) {
+  const currentUser = req.currentUser._id.toString();
+  const requestFromUser = req.params.id.toString();
+  console.log(currentUser);
+  console.log(requestFromUser);
+  User
+    .findById(requestFromUser)
+    .exec()
+    .then(user => {
+      user.sentMatchRequests.find(item => item.userId.toString() === currentUser).remove();
+      user.acceptedMatchRequests.push({ userId: currentUser });
+      user.save();
+    })
+    .catch(next);
+  User
+    .findById(currentUser)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
+      user.acceptedMatchRequests.push({ userId: requestFromUser});
+      user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
+function rejectMatchRequest(req, res, next) {
+  const currentUser = req.currentUser._id.toString();
+  const requestFromUser = req.params.id.toString();
+  User
+    .findById(requestFromUser)
+    .exec()
+    .then(user => {
+      user.sentMatchRequests.find(item => item.userId.toString() === currentUser).remove();
+      user.save();
+    })
+    .catch(next);
+  User
+    .findById(currentUser)
+    .exec()
+    .then(user => {
+      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
+      user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   delete: deleteRoute,
   update: updateRoute,
   sendMessage: sendMessage,
-  deleteMessage: deleteMessage
+  deleteMessage: deleteMessage,
+  sendMatchRequest: sendMatchRequest,
+  acceptMatchRequest: acceptMatchRequest,
+  rejectMatchRequest: rejectMatchRequest
 };

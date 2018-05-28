@@ -25,6 +25,10 @@ messageSchema.set('toJSON', {
   }
 });
 
+const requestSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
+});
+
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -39,7 +43,10 @@ const userSchema = new mongoose.Schema({
   },
   image: { type: String },
   dateRequests: { type: String },
-  messages: [ messageSchema ]
+  messages: [ messageSchema ],
+  pendingMatchRequests: [ requestSchema ],
+  acceptedMatchRequests: [ requestSchema ],
+  sentMatchRequests: [ requestSchema ]
 });
 
 userSchema.plugin(require('mongoose-unique-validator'));
