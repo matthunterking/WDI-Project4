@@ -12,6 +12,14 @@
   animation-name: rightpanel;
   animation-duration: 0.1s;
   margin-top: 1vh;
+  background: linear-gradient(to top left, $lightblue, $blue);
+}
+
+.profilePanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 @keyframes leftpanel {
