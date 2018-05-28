@@ -1,7 +1,6 @@
-/* global api, describe, it, expect, beforeEach */
-const jwt = require('jsonwebtoken');
-
+/* global api, describe, it, expect beforeEach */
 const User = require('../../../models/user');
+
 const userData = {
   name: 'test',
   email: 'test@test.com',
@@ -9,59 +8,89 @@ const userData = {
   passwordConfirmation: 'test'
 };
 
-let user;
-
-describe('POST /login', () => {
+describe('POST /register', () => {
   beforeEach(done => {
-    User.remove({})
-      .then(() => User.create(userData))
-      .then(_user => {
-        user = _user;
-        done();
-      });
+    User
+      .remove({})
+      .then(() => done());
   });
+
+  // make a post request to api/login
 
   it('should return a 200 response', done => {
     api
-      .post('/api/login')
+      .post('/api/register')
+      .send(userData)
+      .expect(200,done);
+  });
+
+
+  it('should return a new user object', done => {
+    api
+      .post('/api/register')
       .send(userData)
       .end((err, res) => {
-        expect(res.status).to.eq(200);
+        expect(res.body.user._id).to.exist;
         done();
       });
   });
 
-  it('should return a valid token', done => {
+
+  it('should create a new user', done => {
     api
-      .post('/api/login')
+      .post('/api/register')
       .send(userData)
+      .end(() => {
+        User
+          .findOne({ email: userData.email })
+          .then(user => {
+            expect(user).to.exist;
+            done();
+          });
+      });
+  });
+
+  it('should return an error if email already exists', done => {
+    User.create(userData)
+      .then(() => {
+        api
+          .post('/api/register')
+          .send(userData)
+          .end((err, res) => {
+            expect(res.status).to.eq(422);
+            done();
+          });
+      });
+  });
+
+  it('should return an error if password confirmation does not match', done => {
+    api
+      .post('/api/register')
+      .send({
+        name: 'test',
+        email: 'test@test.com',
+        password: 'test',
+        passwordConfirmation: 'bad'
+      })
       .end((err, res) => {
-        const payload = jwt.decode(res.body.token);
-        expect(payload.sub).to.exist;
-        expect(user._id.equals(payload.sub)).to.be.true;
+        expect(res.status).to.eq(422);
         done();
       });
   });
 
-  it('should return a 401 response if password is bad', done => {
+  it('should return an error if password is not given', done => {
     api
-      .post('/api/login')
-      .send({ email: 'test@test.com', password: 'bad' })
+      .post('/api/register')
+      .send({
+        username: 'test',
+        email: 'test@test.com',
+        password: '',
+        passwordConfirmation: ''
+      })
       .end((err, res) => {
-        expect(res.status).to.eq(401);
-        expect(res.body.message).to.eq('Unauthorized');
+        expect(res.status).to.eq(422);
         done();
       });
   });
 
-  it('should return a 401 response if the email is bad', done => {
-    api
-      .post('/api/login')
-      .send({ email: 'bad@test.com', password: 'test' })
-      .end((err, res) => {
-        expect(res.status).to.eq(401);
-        expect(res.body.message).to.eq('Unauthorized');
-        done();
-      });
-  });
 });
