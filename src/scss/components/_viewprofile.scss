@@ -1,0 +1,35 @@
+.leftpanel {
+  position: relative;
+  min-height: 100vh;
+  animation-name: leftpanel;
+  animation-duration: 0.1s;
+  margin-top: 1vh;
+}
+
+.rightpanel {
+  position: relative;
+  min-height: 100vh;
+  animation-name: rightpanel;
+  animation-duration: 0.1s;
+  margin-top: 1vh;
+}
+
+@keyframes leftpanel {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes rightpanel {
+  0% {
+    left: 100%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}

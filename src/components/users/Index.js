@@ -25,10 +25,13 @@ class UsersIndex extends React.Component {
           <div className="columns is-multiline">
             {this.state.users.map(user =>
               <div key={user._id} className='column is-one-quarter profileFrame'>
-                <Link to={`/users/${user._id}`}>
+                <Link
+                  to={`users/viewprofile/${user._id}`}
+                  user={user}
+                >
                   <div className="imageFrame" style={{ backgroundImage: `url(${user.image})`}}>
                     <div className="indexContent has-text-centered">
-                      <p className='is-size-1'>View profile ❤️</p>
+                      <p className='is-size-1'>View profile</p>
                     </div>
                   </div>
                   <p className="is-size-2 darktext">{user.name}</p>
