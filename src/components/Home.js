@@ -15,9 +15,9 @@ const Home = () => {
         </div>
         <div className="homeNav">
           <AuthLogin />
-          <div>
-            <Link to="/register">
-              <button className="button redirectButton">Not registered? Join now!</button>
+          <div className="registerContainer">
+            <Link className="button redirectButton" to="/register">
+            Not registered? Join now!
             </Link>
           </div>
         </div>

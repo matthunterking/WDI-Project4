@@ -1,0 +1,22 @@
+form {
+  width: 80%;
+}
+
+.selectionField {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+select {
+  min-width: 30%;
+}
+
+.registerNav {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 50px;
+}
