@@ -9,7 +9,6 @@ import {
 import AuthLogin from './components/auth/Login';
 import AuthRegister from './components/auth/Register';
 import Auth from './lib/Auth';
-import Navbar from './components/Navbar';
 import Home from './components/Home';
 
 import UsersIndex from './components/users/Index';
@@ -30,7 +29,6 @@ class App extends React.Component {
     return (
       <Router>
         <main>
-          <Navbar />
           <FlashMessages />
           <section className="section">
             <div className="container">
