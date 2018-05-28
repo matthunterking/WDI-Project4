@@ -17,4 +17,8 @@ router.post('/login', auth.login);
 router.route('/message').post(secureRoute, users.sendMessage);
 router.route('/users/:id/message/:messageId').delete(secureRoute, users.deleteMessage);
 
+router.route('/users/:id/match').post(secureRoute, users.sendMatchRequest);
+router.route('/users/:id/accept').post(secureRoute, users.acceptMatchRequest);
+router.route('/users/:id/reject').post(secureRoute, users.rejectMatchRequest);
+
 module.exports = router;
