@@ -1,6 +1,8 @@
 @import 'helpers/variables';
+@import 'helpers/typography';
 @import 'components/home';
 @import 'components/register';
+@import 'components/index';
 @import 'partials/buttons';
 @import 'partials/navbar';
 
@@ -17,44 +19,6 @@ body {
 
 
 
-.indexFrame {
-  color: transparent;
-  background-size: cover;
-  width: 100%;
-  height: 300px;
-  border-radius: 10px;
-  &:hover {
-    background-image: none !important;
-    background-color: $yellow;
-    color: $navy;
-  }
-}
-
 .indexContent {
   padding: 50px;
 }
-
-// .heartframe {
-//   background-image: url('/assets/heartframe.png');
-//   background-size: cover;
-//   width: 500px;
-//   height: 500px;
-//   z-index: 2;
-// }
-//
-// .heartcontent {
-//   background-color: pink;
-//   width: 470px;
-//   height: 470px;
-//   position: relative;
-//   background-size: cover;
-//   background-position: center;
-//   z-index: -2;
-// }
-//
-// .profilePicSmall {
-//   border-radius: 100%;
-//   width: 50px;
-//   height: 50px;
-//   background-size: cover;
-// }

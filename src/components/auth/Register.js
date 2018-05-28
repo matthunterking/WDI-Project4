@@ -47,7 +47,7 @@ class AuthRegister extends React.Component {
         <div className="columns">
           <div className="column brandPanel" />
           <div className="column infoPanel">
-            <h3 className='is-size-1'>Your first step in finding love</h3>
+            <h1 className='is-size-1'>Your first step in finding love</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="field">
                 <input

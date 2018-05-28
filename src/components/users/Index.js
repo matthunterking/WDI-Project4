@@ -20,17 +20,20 @@ class UsersIndex extends React.Component {
       <div>
         <Navbar />
         <div className="container">
+          <h1 className='darktext is-size-1'>Your matches</h1>
+          <hr className='darktext' />
           <div className="columns is-multiline">
             {this.state.users.map(user =>
-              <div key={user._id} className='column is-one-third'>
+              <div key={user._id} className='column is-one-quarter profileFrame'>
                 <Link to={`/users/${user._id}`}>
-                  <div className="indexFrame" style={{ backgroundImage: `url(${user.image})`}}>
+                  <div className="imageFrame" style={{ backgroundImage: `url(${user.image})`}}>
                     <div className="indexContent has-text-centered">
-                      <p className="is-size-2">{user.name}</p>
-                      <p className="is-size-3">{user.gender} {user.age}</p>
-                      <p className="is-size-3">Looking for {user.seeking}</p>
+                      <p className='is-size-1'>View profile ❤️</p>
                     </div>
                   </div>
+                  <p className="is-size-2 darktext">{user.name}</p>
+                  <p className="is-size-3 darktext">{user.gender} {user.age}</p>
+                  <p className="is-size-3 darktext">Looking for {user.seeking}</p>
                 </Link>
               </div>
             )}
