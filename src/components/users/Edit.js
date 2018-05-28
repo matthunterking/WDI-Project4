@@ -63,25 +63,7 @@ class UsersEdit extends React.Component {
             onChange={this.handleChange}
             value={user.email}
           />
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            className="input"
-            name="passwordConfirmation"
-            placeholder="Password Confirmation"
-            onChange={this.handleChange}
-          />
-        </div>
+        </div>  
         <label>Please select your gender
         <select
           className="select"
