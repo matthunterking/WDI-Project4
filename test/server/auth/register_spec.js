@@ -82,7 +82,7 @@ describe('POST /register', () => {
     api
       .post('/api/register')
       .send({
-        username: 'test',
+        name: 'test',
         email: 'test@test.com',
         password: '',
         passwordConfirmation: ''
