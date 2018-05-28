@@ -16,15 +16,16 @@ class AuthLogin extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('/api/login', this.state)
+    axios
+      .post('/api/login', this.state)
       .then(res =>  {
         Auth.setToken(res.data.token);
         Flash.setMessage('info', res.data.message);
       })
-      .then(() => this.props.history.push('/burgers'))
+      .then(() => this.props.history.push('/users'))
       .catch(() => {
         Flash.setMessage('danger', 'Invalid credentials');
-        this.props.history.push('/login');
+        this.props.history.push('/');
       });
   }
 

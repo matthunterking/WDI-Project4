@@ -4,7 +4,7 @@ import AuthLogin from './auth/Login';
 
 const Home = () => {
   return (
-    <div className="columns">
+    <div className="columns home">
       <div className="column brandPanel" />
       <div className="column infoPanel">
         <div>

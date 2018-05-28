@@ -2,9 +2,10 @@
 @import 'components/home';
 @import 'components/register';
 @import 'partials/buttons';
+@import 'partials/navbar';
+
 
 body {
-  background: linear-gradient(to top left, $lightpink, $pastelpink);
   min-height: 100vh;
   font-family: 'Kaushan Script', cursive;
   color: white;
@@ -14,13 +15,7 @@ body {
   color: white;
 }
 
-.navbar {
-  background-color: transparent;
-}
 
-.navbar-item {
-  text-align: center;
-}
 
 .indexFrame {
   color: transparent;
