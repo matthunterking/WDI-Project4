@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Messages = ({ user }) => {
-  console.log(user);
+const Messages = ({ currentuser, selecteduser }) => {
+  console.log(currentuser, selecteduser);
   return (
     <div>
       <h1>Messages!!</h1>
-      {user.messages.map(message =>
+      {currentuser.messages.map(message =>
         <div key={message._id} className="box">
           <article className="media">
             <div className="media-left">

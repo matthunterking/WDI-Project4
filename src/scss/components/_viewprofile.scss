@@ -4,6 +4,8 @@
   animation-name: leftpanel;
   animation-duration: 0.1s;
   margin-top: 1vh;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .rightpanel {
@@ -14,6 +16,8 @@
   margin-top: 1vh;
   background: white;
   padding: 0% 5%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .profilePanel {
