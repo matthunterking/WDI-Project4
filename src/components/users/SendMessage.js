@@ -16,7 +16,6 @@ class SendMessage extends React.Component {
 
   handleChange = ({ target: { name, value } }) => {
     this.setState( { [name]: value } );
-
   }
 
   getFromData = () => {

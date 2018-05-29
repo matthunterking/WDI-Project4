@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar';
 import Auth from '../../lib/Auth';
+import Messages from './Messages';
 import SendMessage from './SendMessage';
 
 class Messaging extends React.Component {
