@@ -3,6 +3,7 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 import ReactFilestack from 'filestack-react';
+import AutoComplete from '../../common/AutoComplete';
 // const filestackAPI = process.env.FILESTACK_API_KEY;
 
 const basicOptions = {
@@ -25,6 +26,12 @@ class AuthRegister extends React.Component {
     }
     handleChange = ({ target: { name, value } }) => {
       this.setState({ [name]: value });
+    }
+
+    handlePlaceChange = ({ formatted_address: address, geometry: { location
+    }}) => {
+      this.setState({ address, location: location.toJSON() }, () =>
+        console.log(this.state));
     }
 
     handleSubmit = (e) => {
@@ -110,6 +117,10 @@ class AuthRegister extends React.Component {
                   <option value="Women">Women</option>
                   <option value="Both">Both</option>
                 </select>
+              </div>
+              <div className="field">
+                <label htmlFor="address">Address</label>
+                <AutoComplete id="address" name="address" className="input" placeholder="Address" handlePlaceChange={handlePlaceChange} />
               </div>
               <hr />
               <div className="field">
