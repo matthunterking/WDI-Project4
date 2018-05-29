@@ -13,6 +13,7 @@ import Home from './components/Home';
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 import ViewProfile from './components/users/ViewProfile';
+import PlanDate from './components/users/PlanDate';
 import Messaging from './components/users/Messaging';
 import UsersEdit from './components/users/Edit';
 import FlashMessages from './components/common/FlashMessages';
@@ -36,6 +37,7 @@ class App extends React.Component {
             <Route path="/users/:id/edit" component={UsersEdit} />
             <Route path="/users/:id/messages" component={Messaging} />
             <Route path="/users/:id" component={UsersShow} />
+            <Route path="/plandate" component={PlanDate} />
             <Route path="/users" component={UsersIndex} />
             <Route path="/register" component={AuthRegister} />
             <Route path="/" component={Home} />

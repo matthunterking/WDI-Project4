@@ -36,7 +36,7 @@ class Home extends React.Component {
             <h3 className='is-size-1 featuretext lighttext'>Destination ❤️ Love</h3>
             <hr />
             <p className="is-size-4 featuretext lighttext">Welcome to Desitination Love. We take away all the awkwardness of finding
-              somewhere to go on your date by giving you geographically convineent options!</p>
+              somewhere to go on your date by giving you geographically convenient options!</p>
           </div>
           <div className="homeNav">
             <form onSubmit={this.handleSubmit}>
