@@ -52,20 +52,20 @@ class ViewProfile extends React.Component {
                 />
                 <div className="column profilePanel rightpanel">
                   <div className="showtitle">
-                    <h1 className='is-size-2 darktext'>Meet</h1>
-                    <button className="button backButton">X</button>
+                    <h1 className='is-size-2 featuretext darktext'>Meet</h1>
+                    <button className="button featuretext backButton">X</button>
                   </div>
-                  <h1 className='is-size-1 darktext'>{user.name}</h1>
+                  <h1 className='is-size-1 featuretext darktext'>{user.name}</h1>
                   <div>
-                    <p className="darktext is-size-4 bio">{user.bio}</p>
+                    <p className="standardtext darktext is-size-4 bio">{user.bio}</p>
                   </div>
                   <div>
-                    <p className="darktext is-size-4"><strong>Age:</strong> {user.age}</p>
-                    <p className="darktext is-size-4"><strong>Gender:</strong> {user.gender}</p>
-                    <p className="darktext is-size-4"><strong>Seeking:</strong> {user.seeking}</p>
+                    <p className="standardtext darktext is-size-4"><strong>Age:</strong> {user.age}</p>
+                    <p className="standardtext darktext is-size-4"><strong>Gender:</strong> {user.gender}</p>
+                    <p className="standardtext darktext is-size-4"><strong>Seeking:</strong> {user.seeking}</p>
                   </div>
                   {this.matchRequestIsPending(user) && <p
-                    className="darktext is-size-4 has-text-centered">
+                    className="featuretext darktext is-size-4 has-text-centered">
                     Request sent
                   </p>}
                   {!this.matchRequestIsPending(user) && <button

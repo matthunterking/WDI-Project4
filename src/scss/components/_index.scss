@@ -1,6 +1,7 @@
 .profileFrame {
-    border: 1px solid $lightblue;
     border-radius: 10px;
+    background: white;
+    margin: 5px;
 }
 
 .imageFrame {
@@ -15,4 +16,8 @@
     background-color: $yellow;
     color: $navy;
   }
+}
+
+.indexContent {
+  padding: 50px;
 }
