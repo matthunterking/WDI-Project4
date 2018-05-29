@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar';
 import Auth from '../../lib/Auth';
-import Messages from './Messages';
 import SendMessage from './SendMessage';
 
 class Messaging extends React.Component {
@@ -54,7 +53,6 @@ class Messaging extends React.Component {
               <div className="column is-three-quarters">
                 {!this.state.selectedMatch && <h1 className='darktext is-size-1'>Click on a match to see messages</h1>}
                 {this.state.selectedMatch && <h1 className='darktext is-size-1'>Your conversation with {this.state.selectedMatch.name}</h1>}
-                {/* {Auth.isCurrentUser(user) && <Messages currentuser={user} selecteduser ={this.state.selectedMatch}/> } */}
                 {this.state.selectedMatch && <SendMessage user={this.state.user._id} selectedmatch={this.state.selectedMatch._id}/> }
               </div>
             </div>

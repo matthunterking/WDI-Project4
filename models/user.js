@@ -16,8 +16,13 @@ messageSchema.virtual('sentAtRelative')
     return moment(this.createdAt).fromNow();
   });
 
+messageSchema.virtual('sentAtRaw')
+  .get(function() {
+    return this.createdAt;
+  });
+
 messageSchema.set('toJSON', {
-  virtual: true,
+  virtuals: true,
   transform(doc, json) {
     delete json.createdAt;
     delete json.updatedAt;

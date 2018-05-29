@@ -12,16 +12,6 @@ class SendMessage extends React.Component {
   componentDidMount = () => {
     this.getFromData();
     this.getToData();
-    // axios
-    //   .get(`/api/users/${this.props.user}`)
-    //   .then(res => this.setState({ from: res.data }, () => {
-    //     console.log('from', this.state.from);
-    //   }));
-    // axios
-    //   .get(`/api/users/${this.props.selectedmatch}`)
-    //   .then(res => this.setState({ to: res.data }, () => {
-    //     this.getMessages();
-    //   }));
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -47,12 +37,12 @@ class SendMessage extends React.Component {
   }
 
   getMessages = () => {
-    const fromId = this.state.from._id.toString();
+    const user1 = this.state.from._id.toString();
+    const user2 = this.state.to._id;
     const messages = this.state.from.messages.concat(this.state.to.messages);
     const filteredmessages = messages.filter(message => {
-      console.log(message.to);
-      return message.from._id === fromId || message.to === fromId;
-    });
+      return (message.from._id === user1 && message.to === user2) || (message.from._id === user2 && message.to === user1);
+    }).sort((a, b) => a.sentAtRaw > b.sentAtRaw);
     this.setState({ messages: filteredmessages}, () => {
       console.log('this.state after message filter', this.state);
     });
@@ -84,9 +74,10 @@ class SendMessage extends React.Component {
                 <div className="media-content">
                   <div className="content">
                     <div>
-                      <strong>{message.from.name}</strong>
+                      <strong>From {message.from._id} to {message.to}</strong>
                       <br />
                       <p>{message.content}</p>
+                      <p>{message.sentAtRelative}</p>
                     </div>
                   </div>
                 </div>
