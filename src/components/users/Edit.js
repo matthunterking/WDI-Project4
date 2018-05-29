@@ -17,8 +17,7 @@ class UsersEdit extends React.Component {
       user: null,
       errors: null
     };
-  // when the component has mounted, make a request to get the info from the user
-  // it needs this to pre fill the form
+
     componentDidMount(){
       axios.get(`/api/users/${this.props.match.params.id}`)
         .then(res => this.setState(res.data, () => console.log(this.state)));
