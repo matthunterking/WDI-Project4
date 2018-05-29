@@ -6,7 +6,6 @@ import {
   Switch
 } from 'react-router-dom';
 
-import AuthLogin from './components/auth/Login';
 import AuthRegister from './components/auth/Register';
 import Auth from './lib/Auth';
 import Home from './components/Home';
@@ -38,7 +37,6 @@ class App extends React.Component {
             <Route path="/users/:id/messages" component={Messaging} />
             <Route path="/users/:id" component={UsersShow} />
             <Route path="/users" component={UsersIndex} />
-            <Route path="/login" component={AuthLogin} />
             <Route path="/register" component={AuthRegister} />
             <Route path="/" component={Home} />
           </Switch>
