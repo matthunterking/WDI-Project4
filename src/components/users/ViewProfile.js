@@ -62,6 +62,7 @@ class ViewProfile extends React.Component {
                   <div>
                     <p className="darktext is-size-4"><strong>Age:</strong> {user.age}</p>
                     <p className="darktext is-size-4"><strong>Gender:</strong> {user.gender}</p>
+                    <p className="darktext is-size-4"><strong>Location:</strong> {user.address}</p>
                     <p className="darktext is-size-4"><strong>Seeking:</strong> {user.seeking}</p>
                   </div>
                   {this.matchRequestIsPending(user) && <p

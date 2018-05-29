@@ -3,7 +3,7 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 import ReactFilestack from 'filestack-react';
-import AutoComplete from '../../common/AutoComplete';
+import AutoComplete from '../common/AutoComplete';
 // const filestackAPI = process.env.FILESTACK_API_KEY;
 
 const basicOptions = {
@@ -28,8 +28,7 @@ class AuthRegister extends React.Component {
       this.setState({ [name]: value });
     }
 
-    handlePlaceChange = ({ formatted_address: address, geometry: { location
-    }}) => {
+    handlePlaceChange = ({ formatted_address: address, geometry: { location }}) => {
       this.setState({ address, location: location.toJSON() }, () =>
         console.log(this.state));
     }
@@ -43,6 +42,7 @@ class AuthRegister extends React.Component {
           Flash.setMessage('info', res.data.message);
         })
         .then(() => this.props.history.push('/users'))
+        .then(console.log(this.state))
         .catch(() => {
           Flash.setMessage('danger', 'Invalid credentials');
           this.props.history.replace('/register');
@@ -96,7 +96,7 @@ class AuthRegister extends React.Component {
                   name="gender"
                   className="select"
                   onChange={this.handleChange}>
-                  <option selected value="Male">Please Select</option>
+                  <option defaultValue="Male">Please Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Non-binary">Non-binary</option>
@@ -112,15 +112,14 @@ class AuthRegister extends React.Component {
                   className="select"
                   onChange={this.handleChange}
                   name="seeking">
-                  <option selected value="Men">Please Select</option>
+                  <option defaultValue="Men">Please Select</option>
                   <option value="Men">Men</option>
                   <option value="Women">Women</option>
                   <option value="Both">Both</option>
                 </select>
               </div>
               <div className="field">
-                <label htmlFor="address">Address</label>
-                <AutoComplete id="address" name="address" className="input" placeholder="Address" handlePlaceChange={handlePlaceChange} />
+                <AutoComplete id="location" name="address" className="input" placeholder="Address" handlePlaceChange={this.handlePlaceChange} />
               </div>
               <hr />
               <div className="field">

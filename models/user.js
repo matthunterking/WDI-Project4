@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
   gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Transgender', 'Other', 'Prefer not to say']},
   seeking: { type: String, enum: ['Men', 'Women', 'Both'] },
   bio: { type: String },
+  address: { type: String },
   location: {
     lat: { type: Number },
     lng: { type: Number }
