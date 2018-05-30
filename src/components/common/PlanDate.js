@@ -1,12 +1,7 @@
 /* global google */
 import React from 'react';
 
-class Map extends React.Component {
-
-  // constructor() {
-  //   super();
-  //   this.markers = [];
-  // }
+class PlanDate extends React.Component {
 
   state = {
     users: [{
@@ -19,7 +14,7 @@ class Map extends React.Component {
       name: 'bob',
       location: {
         lat: 51.5465,
-        lng: 0.1058
+        lng: -0.1058
       }
     }]
   };
@@ -53,21 +48,31 @@ class Map extends React.Component {
     this.map.setCenter(center);
 
     var service = new google.maps.places.PlacesService(this.map);
+
     service.nearbySearch({
-      location: centerMarker,
-      radius: 500,
-      type: ['bars']
+      location: centerMarker.position,
+      radius: 1000,
+      keyword: ['bar' ]
+    }, (results) => {
+      const cleanedResults = results.map(bar => {
+        return ({
+          name: bar.name,
+          address: bar.vicinity,
+          location: bar.geometry.location.toJSON(),
+          image: bar.photos ? bar.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300}) : null
+        });
+      });
+      this.setState({ bars: cleanedResults });
+      console.log(cleanedResults);
+      cleanedResults.map(bar => {
+        return new google.maps.Marker({
+          position: bar.location,
+          map: this.map,
+          label: '🥂'
+        });
+      });
     });
   }
-
-  // function callback(results, status) {
-  //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //     for (var i = 0; i < results.length; i++) {
-  //       createMarker(results[i]);
-  //     }
-  //   }
-
-
 
 
 
@@ -86,7 +91,6 @@ class Map extends React.Component {
   componentWillUnmount() {
     this.markers.forEach(marker => marker.setMap(null));
     this.markers = null;
-    // removing the marker from the map as there is no "garbage collector for maps"
     this.marker.setMap(null);
     this.market = null;
     this.map = null;
@@ -94,9 +98,30 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div className="map" ref={ el => this.mapDiv = el } />
+      <div className="container">
+        <div className="map" ref={ el => this.mapDiv = el }></div>
+        <div>
+          <h1 className="title is-1">Bars</h1>
+          {!this.state.bars && <p>Loading...</p>}
+          <div className="columns is-multiline">
+            {this.state.bars && this.state.bars.map(bar =>
+              <div key={bar.name} className="is-one-third-desktop is-half-tablet">
+                <div
+                  className="card-image"
+                  style={{ backgroundImage: `url(${bar.image})` }}
+                ></div>
+                <div className="card-content">
+                  <div className="media">
+                    <p className="subtitle is-5">{bar.name}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
-export default Map;
+export default PlanDate;

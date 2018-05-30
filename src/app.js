@@ -13,7 +13,7 @@ import Home from './components/Home';
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 import ViewProfile from './components/users/ViewProfile';
-import PlanDate from './components/users/PlanDate';
+import PlanDate from './components/common/PlanDate';
 import Messaging from './components/users/Messaging';
 import UsersEdit from './components/users/Edit';
 import FlashMessages from './components/common/FlashMessages';
