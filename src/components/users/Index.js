@@ -4,17 +4,28 @@ import {Link} from 'react-router-dom';
 import SortBar from './SortBar';
 import Navbar from '../Navbar';
 import _ from 'lodash';
+import Auth from '../../lib/Auth';
 
 class UsersIndex extends React.Component {
 
   state = {
-    users: []
+    users: [],
+    search: '',
+    sort: 'name|asc',
+    currentUser: null
   }
 
   componentDidMount() {
     axios
       .get('api/users')
-      .then(res => this.setState({ users: res.data }));
+      .then(res => {
+        console.log(res.data);
+        const currentUser = res.data.filter(user => user._id === Auth.getPayload().sub)[0];
+        const otherUsers = res.data.filter(user => user._id !== Auth.getPayload().sub);
+        this.setState({ users: otherUsers, currentUser: currentUser }, () => {
+          console.log(this.state);
+        });
+      });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -23,7 +34,6 @@ class UsersIndex extends React.Component {
 
   sortedFilteredUsers = () => {
     const [ field ] = this.state.sort.split('|');
-    console.log('this is field ->', field);
     const re = new RegExp(this.state.search, 'i');
     const filtered = _.filter(this.state.users, user => {
       return re.test(user.gender);
@@ -59,6 +69,9 @@ class UsersIndex extends React.Component {
                       <p className="is-size-2 featuretext darktext">{user.name}</p>
                       <p className="is-size-3 featuretext darktext">{user.gender} - {user.age}</p>
                       <p className="is-size-3 featuretext darktext">Looking for {user.seeking}</p>
+                      <p className="is-size-3 featuretext darktext">
+                        {user.Interests.filter(interest => this.state.currentUser.Interests.includes(interest)).length}
+                      </p>
                     </Link>
                   </div>
                 </div>
