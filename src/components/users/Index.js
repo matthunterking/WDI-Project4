@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import SortBar from './SortBar';
 import Navbar from '../Navbar';
+import _ from 'lodash';
 
 class UsersIndex extends React.Component {
 
@@ -15,16 +17,33 @@ class UsersIndex extends React.Component {
       .then(res => this.setState({ users: res.data }));
   }
 
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  }
+
+  sortedFilteredUsers = () => {
+    const [field] = this.state.sort.split('|');
+    const re = new RegExp(this.state.search, 'i');
+    const filtered = _.filter(this.state.users, user => {
+      return re.test(user.gender);
+    });
+    return _.orderBy(filtered, field);
+  }
+
   render() {
     return (
       <div>
         <Navbar />
         <section className='section'>
           <div className="container">
-            <h1 className='featuretext lighttext is-size-1'>Your matches</h1>
+            <h1 className='featuretext lighttext is-size-1'>Find your Match</h1>
+            <SortBar
+              handleChange={this.handleChange}
+              data={this.state}
+            />
             <hr />
             <div className="columns is-multiline">
-              {this.state.users.map(user =>
+              {this.sortedFilteredUsers().map(user =>
                 <div key={user._id} className='column is-one-quarter'>
                   <div className="profileFrame">
                     <Link
