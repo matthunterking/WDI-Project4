@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
     lng: { type: Number }
   },
   image: { type: String },
-  Interests: [{ type: String }],
+  interests: { type: Object },
   messages: [ messageSchema ],
   pendingMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
   acceptedMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],

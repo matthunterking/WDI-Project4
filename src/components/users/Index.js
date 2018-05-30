@@ -70,7 +70,7 @@ class UsersIndex extends React.Component {
                       <p className="is-size-3 featuretext darktext">{user.gender} - {user.age}</p>
                       <p className="is-size-3 featuretext darktext">Looking for {user.seeking}</p>
                       <p className="is-size-3 featuretext darktext">
-                        {user.Interests.filter(interest => this.state.currentUser.Interests.includes(interest)).length}
+                      {Object.values(user.interests).filter(interest => Object.values(this.state.currentUser.interests).includes(interest)).length*2}0% match
                       </p>
                     </Link>
                   </div>

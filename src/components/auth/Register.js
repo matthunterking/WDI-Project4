@@ -16,7 +16,8 @@ const basicOptions = {
 class AuthRegister extends React.Component {
 
   state = {
-    image: null
+    image: null,
+    interests: {}
   };
 
     onSuccess = (result) => {
@@ -24,8 +25,15 @@ class AuthRegister extends React.Component {
         image: result.filesUploaded[0].url
       });
     }
+
     handleChange = ({ target: { name, value } }) => {
       this.setState({ [name]: value });
+    }
+
+    handleInterestChange = ({target: { name, value } }) => {
+      this.setState({ interests: { name, value } }, () => {
+        console.log(this.state);
+      });
     }
 
     handlePlaceChange = ({ formatted_address: address, geometry: { location }}) => {
@@ -130,6 +138,68 @@ class AuthRegister extends React.Component {
                   placeholder="Tell use about yourself"
                   onChange={this.handleChange}
                 />
+              </div>
+              <div>
+                <div className="selectionField">
+                  <label htmlFor="interests" className="featureText">Cats or Dogs?</label>
+                  <select
+                    className="select"
+                    onChange={this.handleInterestChange}
+                    name="animals">
+                    <option defaultValue="neither">Please Select</option>
+                    <option value="cats">Cats</option>
+                    <option value="dogs">Dogs</option>
+                    <option value="neither1">Neither</option>
+                  </select>
+                </div>
+                <div className="selectionField">
+                  <label htmlFor="interests" className="featureText">Night in or night out?</label>
+                  <select
+                    className="select"
+                    onChange={this.handleInterestChange}
+                    name="evening">
+                    <option defaultValue="neither">Please Select</option>
+                    <option value="in">Night In</option>
+                    <option value="out">Night Out</option>
+                    <option value="neither2">Neither</option>
+                  </select>
+                </div>
+                <div className="selectionField">
+                  <label htmlFor="interests" className="featureText">Beach or city break?</label>
+                  <select
+                    className="select"
+                    onChange={this.handleInterestChange}
+                    name="holiday">
+                    <option defaultValue="neither">Please Select</option>
+                    <option value="beach">Beach</option>
+                    <option value="city">City Break</option>
+                    <option value="neither3">Neither</option>
+                  </select>
+                </div>
+                <div className="selectionField">
+                  <label htmlFor="interests" className="featureText">Resturant or takeaway?</label>
+                  <select
+                    className="select"
+                    onChange={this.handleInterestChange}
+                    name="food">
+                    <option defaultValue="neither">Please Select</option>
+                    <option value="resturant">Resturant</option>
+                    <option value="takeaway">Takeaway</option>
+                    <option value="neither4">Neither</option>
+                  </select>
+                </div>
+                <div className="selectionField">
+                  <label htmlFor="interests" className="featureText">Romantic comedy or horror?</label>
+                  <select
+                    className="select"
+                    onChange={this.handleInterestChange}
+                    name="film">
+                    <option defaultValue="neither">Please Select</option>
+                    <option value="romantic">Romantic comedy</option>
+                    <option value="horror">Horror</option>
+                    <option value="neither5">neither</option>
+                  </select>
+                </div>
               </div>
               <div className="registerNav">
                 <ReactFilestack
