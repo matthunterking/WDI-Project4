@@ -1,9 +1,10 @@
 const User = require('../models/user');
+const Promise = require('bluebird');
 
 function indexRoute(req, res, next){
   User
     .find()
-    .populate('messages.from pendingMatchRequests.userId pendingMatchRequests.userId acceptedMatchRequests.userId sentMatchRequests.userId')
+    .populate('messages.from messages.to pendingMatchRequests acceptedMatchRequests sentMatchRequests')
     .exec()
     .then(users => res.json(users))
     .catch(next);
@@ -12,7 +13,7 @@ function indexRoute(req, res, next){
 function showRoute(req, res, next){
   User
     .findById(req.params.id)
-    .populate('messages.from pendingMatchRequests.userId pendingMatchRequests.userId acceptedMatchRequests.userId sentMatchRequests.userId')
+    .populate('messages.from messages.to pendingMatchRequests pendingMatchRequests acceptedMatchRequests sentMatchRequests')
     .exec()
     .then(user => res.json(user))
     .catch(next);
@@ -47,7 +48,6 @@ function updateRoute(req, res, next){
 //then push the body of the request into the other users message array
 //returns the whole of the to users record
 function sendMessage(req, res, next) {
-  req.body.from = req.currentUser;
   User
     .findById(req.body.from)
     .exec()
@@ -55,6 +55,7 @@ function sendMessage(req, res, next) {
       user.messages.push(req.body);
       return user.save();
     })
+    .then(user => User.populate(user, { path: 'messages.from messages.to' }))
     .then(user => res.json(user))
     .catch(next);
 }
@@ -82,69 +83,57 @@ function deleteMessage(req, res, next) {
 
 function sendMatchRequest(req, res, next) {
   User
-    .findById(req.currentUser._id)
-    .exec()
-    .then(user => {
-      user.sentMatchRequests.push({ userId: req.params.id });
-      user.save();
-    })
-    .catch(next);
-  User
     .findById(req.params.id)
     .exec()
     .then(user => {
-      user.pendingMatchRequests.push({ userId: req.currentUser._id });
-      return user.save();
+      user.pendingMatchRequests.push(req.currentUser._id);
+      req.currentUser.sentMatchRequests.push(req.params.id);
+
+      return Promise.props({
+        sender: req.currentUser.save(),
+        receiver: user.save()
+      });
     })
-    .then(user => res.json(user))
+    .then(users => res.json(users.sender))
     .catch(next);
 }
 
 function acceptMatchRequest(req, res, next) {
-  const currentUser = req.currentUser._id.toString();
-  const requestFromUser = req.params.id.toString();
-  console.log(currentUser);
-  console.log(requestFromUser);
   User
-    .findById(requestFromUser)
+    .findById(req.params.id)
     .exec()
     .then(user => {
-      user.sentMatchRequests.find(item => item.userId.toString() === currentUser).remove();
-      user.acceptedMatchRequests.push({ userId: currentUser });
-      user.save();
+      user.sentMatchRequests = user.sentMatchRequests.filter(item => !item.equals(req.currentUser._id));
+      user.acceptedMatchRequests.push(req.currentUser);
+
+      user.pendingMatchRequests = user.pendingMatchRequests.filter(item => !item.equals(req.params.id));
+      user.acceptedMatchRequests.push(req.params.id);
+
+      return Promise.props({
+        accepter: req.currentUser.save(),
+        acceptee: user.save()
+      });
     })
-    .catch(next);
-  User
-    .findById(currentUser)
-    .exec()
-    .then(user => {
-      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
-      user.acceptedMatchRequests.push({ userId: requestFromUser});
-      user.save();
-    })
-    .then(user => res.json(user))
+    .then(users => res.json(users.accepter))
     .catch(next);
 }
 
 function rejectMatchRequest(req, res, next) {
-  const currentUser = req.currentUser._id.toString();
-  const requestFromUser = req.params.id.toString();
+
   User
-    .findById(requestFromUser)
+    .findById(req.params.id)
     .exec()
     .then(user => {
-      user.sentMatchRequests.find(item => item.userId.toString() === currentUser).remove();
-      user.save();
+      user.sentMatchRequests = user.sentMatchRequests.filter(item => !item.equals(req.currentUser._id));
+
+      user.pendingMatchRequests = user.pendingMatchRequests.filter(item => !item.equals(req.params.id));
+
+      return Promise.props({
+        rejector: req.currentUser.save(),
+        rejectee: user.save()
+      });
     })
-    .catch(next);
-  User
-    .findById(currentUser)
-    .exec()
-    .then(user => {
-      user.pendingMatchRequests.find(item => item.userId.toString() === requestFromUser).remove();
-      user.save();
-    })
-    .then(user => res.json(user))
+    .then(users => res.json(users.rejector))
     .catch(next);
 }
 

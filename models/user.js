@@ -18,7 +18,7 @@ messageSchema.virtual('sentAtRelative')
 
 messageSchema.virtual('sentAtRaw')
   .get(function() {
-    return this.createdAt;
+    return moment.unix(this.createdAt);
   });
 
 messageSchema.set('toJSON', {
@@ -28,10 +28,6 @@ messageSchema.set('toJSON', {
     delete json.updatedAt;
     return json;
   }
-});
-
-const requestSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 const userSchema = new mongoose.Schema({
@@ -50,9 +46,9 @@ const userSchema = new mongoose.Schema({
   image: { type: String },
   dateRequests: { type: String },
   messages: [ messageSchema ],
-  pendingMatchRequests: [ requestSchema ],
-  acceptedMatchRequests: [ requestSchema ],
-  sentMatchRequests: [ requestSchema ]
+  pendingMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
+  acceptedMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
+  sentMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ]
 });
 
 userSchema.plugin(require('mongoose-unique-validator'));

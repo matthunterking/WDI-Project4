@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import { Link } from 'react-router-dom';
-import Messages from './Messages';
-import SendMessage from './SendMessage';
 import Navbar from '../Navbar';
 
 
@@ -14,10 +12,11 @@ class UsersShow extends React.Component {
   };
 
   componentDidMount () {
-    // console.log(this.props.match.params.id);
     axios
       .get(`/api/users/${this.props.match.params.id}`)
-      .then(res => this.setState({ user: res.data }));
+      .then(res => this.setState({ user: res.data }, () => {
+        console.log(this.state);
+      }));
   }
 
   handleDelete = () => {
@@ -39,16 +38,7 @@ class UsersShow extends React.Component {
       .catch(() => this.props.history.replace('/login'));
   };
 
-  // handleMatchRequest = () => {
-  //   axios
-  //     .post(`/api/users/${this.state.user._id}/match`, this.state, {
-  //       headers: { Authorization: `Bearer ${Auth.getToken()}`}
-  //     })
-  //     .then(res => this.setState({ user: res.data }));
-  // }
-
   handleMatchConfirm = (e) => {
-    console.log(e.target.name);
     axios
       .post(`/api/users/${e.target.name}/accept`, this.state, {
         headers: { Authorization: `Bearer ${Auth.getToken()}`}
@@ -98,28 +88,28 @@ class UsersShow extends React.Component {
             <h1 className='darktext is-size-1 featureText'>Pending Match Requests</h1>
             <hr className='darktext' />
             {user.pendingMatchRequests.map(user =>
-              <div key={user.userId.id}>
+              <div key={user._id}>
                 <div className="columns">
                   <div className="column is-one-quarter">
-                    <img src={user.userId.image} />
+                    <img src={user.image} />
                   </div>
                   <div className="column is-one-half">
-                    <p className="is-size-4 featureText">{user.userId.name}</p>
-                    <p className="is-size-4 standardText">{user.userId.age}</p>
-                    <p className="is-size-4 standardText">{user.userId.bio}</p>
+                    <p className="is-size-4 featureText">{user.name}</p>
+                    <p className="is-size-4 standardText">{user.age}</p>
+                    <p className="is-size-4 standardText">{user.bio}</p>
                   </div>
                   <div className="column is-one-quarter">
                     <button
                       className="button redirectButton"
                       onClick={this.handleMatchConfirm}
-                      name= {user.userId._id}
-                    >Match with {user.userId.name}
+                      name= {user._id}
+                    >Match with {user.name}
                     </button>
                     <button
                       className="button redButton"
                       onClick={this.handleMatchReject}
-                      name= {user.userId._id}
-                    >Reject {user.userId.name}</button>
+                      name= {user._id}
+                    >Reject {user.name}</button>
                   </div>
                 </div>
               </div> )}
