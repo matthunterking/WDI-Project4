@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import { Link } from 'react-router-dom';
-import Messages from './Messages';
-import SendMessage from './SendMessage';
 import Navbar from '../Navbar';
 
 
