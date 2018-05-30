@@ -74,6 +74,7 @@ class UsersShow extends React.Component {
                   <p className="is-size-4 standardText">Looking for: {user.seeking}</p>
                   <p className="is-size-4 standardText">Age: {user.age}</p>
                   <p className="is-size-4 standardText">Gender: {user.gender}</p>
+                  <p className="is-size-4 standardText">Matches: {user.acceptedMatchRequests.length}</p>
                   <div className="registerNav">
                     <Link to={`/users/${user._id}/edit`}
                       className="button submitButton"
@@ -99,17 +100,19 @@ class UsersShow extends React.Component {
                     <p className="is-size-4 standardText">{user.bio}</p>
                   </div>
                   <div className="column is-one-quarter">
-                    <button
-                      className="button redirectButton"
-                      onClick={this.handleMatchConfirm}
-                      name= {user._id}
-                    >Match with {user.name}
-                    </button>
-                    <button
-                      className="button redButton"
-                      onClick={this.handleMatchReject}
-                      name= {user._id}
-                    >Reject {user.name}</button>
+                    {user._id && <div>
+                      <button
+                        className="button redirectButton"
+                        onClick={this.handleMatchConfirm}
+                        name= {user._id}
+                      >Match with {user.name}
+                      </button>
+                      <button
+                        className="button redButton"
+                        onClick={this.handleMatchReject}
+                        name= {user._id}
+                      >Reject {user.name}</button>
+                    </div>}
                   </div>
                 </div>
               </div> )}
