@@ -6,7 +6,7 @@ const SortBar = ({ handleChange, data }) => {
       <div className="field column is-5">
         <input className="input" placeholder="Search" name="search" onChange={handleChange} value={data.search}/>
       </div>
-      {!data.mapView && <div className="field column is-5">
+      <div className="field column is-5">
         <div className="control">
           <div className="select">
             <select onChange={handleChange} name="sort" value={data.sort}>
@@ -17,7 +17,7 @@ const SortBar = ({ handleChange, data }) => {
             </select>
           </div>
         </div>
-      </div>}
+      </div>
     </div>
   );
 };
