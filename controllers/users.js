@@ -106,8 +106,8 @@ function acceptMatchRequest(req, res, next) {
       user.sentMatchRequests = user.sentMatchRequests.filter(item => !item.equals(req.currentUser._id));
       user.acceptedMatchRequests.push(req.currentUser);
 
-      user.pendingMatchRequests = user.pendingMatchRequests.filter(item => !item.equals(req.params.id));
-      user.acceptedMatchRequests.push(req.params.id);
+      req.currentUser.pendingMatchRequests = req.currentUser.pendingMatchRequests.filter(item => !item.equals(req.params.id));
+      req.currentUser.acceptedMatchRequests.push(req.params.id);
 
       return Promise.props({
         accepter: req.currentUser.save(),
@@ -126,7 +126,7 @@ function rejectMatchRequest(req, res, next) {
     .then(user => {
       user.sentMatchRequests = user.sentMatchRequests.filter(item => !item.equals(req.currentUser._id));
 
-      user.pendingMatchRequests = user.pendingMatchRequests.filter(item => !item.equals(req.params.id));
+      req.currentUser.pendingMatchRequests = user.pendingMatchRequests.filter(item => !item.equals(req.params.id));
 
       return Promise.props({
         rejector: req.currentUser.save(),
