@@ -9,9 +9,7 @@ class Messaging extends React.Component {
 
   state = {
     user: null,
-    selectedMatch: {
-      id: 123
-    }
+    selectedMatch: null
   };
 
   componentDidMount () {
@@ -22,9 +20,9 @@ class Messaging extends React.Component {
 
   handleSelection = (e) => {
     console.log(e.target.id);
-    this.setState({ selectedMatch: e.target.id}, () => {
-      console.log(this.state);
-    });
+    axios
+      .get(`/api/users/${e.target.id}`)
+      .then(res => this.setState({ selectedMatch: res.data}));
   }
 
   render() {
@@ -47,16 +45,16 @@ class Messaging extends React.Component {
                         <img id={user.userId._id} src={user.userId.image} />
                       </div>
                       <div className="column is-one-half">
-                        <p id={user.userId._id} className="is-size-4 darktext featureText">{user.userId.name} {user.userId._id}</p>
+                        <p id={user.userId._id} className="is-size-4 darktext featureText">{user.userId.name}</p>
                       </div>
                     </div>
                   </div>
                 )}
               </div>
               <div className="column is-three-quarters">
-                <h1 className='darktext is-size-1'>My Messages</h1>
-                {Auth.isCurrentUser(user) && <Messages currentuser={user} selecteduser ={this.state.selectedMatch}/> }
-                {Auth.isCurrentUser(user) && <SendMessage user={this.state.selectedMatch}/> }
+                {!this.state.selectedMatch && <h1 className='darktext is-size-1'>Click on a match to see messages</h1>}
+                {this.state.selectedMatch && <h1 className='darktext is-size-1'>Your conversation with {this.state.selectedMatch.name}</h1>}
+                {this.state.selectedMatch && <SendMessage user={this.state.user._id} selectedmatch={this.state.selectedMatch._id}/> }
               </div>
             </div>
           </div>

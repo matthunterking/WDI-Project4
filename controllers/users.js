@@ -49,7 +49,7 @@ function updateRoute(req, res, next){
 function sendMessage(req, res, next) {
   req.body.from = req.currentUser;
   User
-    .findById(req.body.to)
+    .findById(req.body.from)
     .exec()
     .then(user => {
       user.messages.push(req.body);
