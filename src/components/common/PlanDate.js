@@ -242,7 +242,7 @@ class PlanDate extends React.Component {
     service.nearbySearch({
       location: centerMarker.position,
       radius: 1000,
-      keyword: ['bar' ]
+      keyword: ['bar']
     }, (results) => {
       const cleanedResults = results.map(bar => {
         return ({
@@ -253,7 +253,6 @@ class PlanDate extends React.Component {
         });
       });
       this.setState({ bars: cleanedResults });
-      console.log(cleanedResults);
       cleanedResults.map(bar => {
         return new google.maps.Marker({
           position: bar.location,
@@ -263,8 +262,6 @@ class PlanDate extends React.Component {
       });
     });
   }
-
-
 
   generateMarkers = () => {
     if(!this.props.markers) return false;
@@ -291,17 +288,17 @@ class PlanDate extends React.Component {
       <div>
         <h1 className="title is-1">Bars</h1>
         <div className="map" ref={ el => this.mapDiv = el }></div>
-        <div className="container">
+        <div className="container bars">
           {!this.state.bars && <p>Loading...</p>}
           <div className="columns is-multiline">
             {this.state.bars && this.state.bars.map(bar =>
-              <div key={bar.name} className="is-one-third-desktop is-half-tablet">
+              <div key={bar.name} className="card is-one-third-desktop is-half-tablet">
                 <div
                   className="card-image"
                   style={{ backgroundImage: `url(${bar.image})` }}
                 ></div>
                 <div className="card-content">
-                  <p className="subtitle is-5">{bar.name}</p>
+                  <p className="subtitle is-7">{bar.name}</p>
                 </div>
               </div>
             )}
