@@ -8,7 +8,9 @@ import _ from 'lodash';
 class UsersIndex extends React.Component {
 
   state = {
-    users: []
+    users: [],
+    search: '',
+    sort: 'name|asc'
   }
 
   componentDidMount() {
@@ -23,7 +25,6 @@ class UsersIndex extends React.Component {
 
   sortedFilteredUsers = () => {
     const [ field ] = this.state.sort.split('|');
-    console.log('this is field ->', field);
     const re = new RegExp(this.state.search, 'i');
     const filtered = _.filter(this.state.users, user => {
       return re.test(user.gender);
