@@ -30,8 +30,8 @@ class Home extends React.Component {
   render() {
     return (
       <div className="columns home">
-        <div className="column brandPanel" />
-        <div className="column infoPanel">
+        <div className="column brandPanel is-half-tablet" />
+        <div className="column infoPanel is-half-tablet">
           <div>
             <h3 className='is-size-1 featuretext lighttext'>Destination ❤️ Love</h3>
             <hr />
