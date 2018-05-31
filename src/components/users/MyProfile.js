@@ -160,17 +160,10 @@ class UsersShow extends React.Component {
                           <div className="column is-one-half">
                             <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
                           </div>
-                          <div className="column is-one-quarter">
-
-
-
-                            <Link
-                              to={`/plandate/${user._id}`}
-                            >Plan a date with {user.name}</Link>
-
-
-
-                          </div>
+                          <Link
+                            to={`/plandate/${user._id}`}
+                            className="button datebutton"
+                          >❤️ Plan a date with {user.name} ❤️</Link>
                         </div>
                       </Link>
                     </div> )}
