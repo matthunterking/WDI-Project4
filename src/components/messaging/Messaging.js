@@ -4,7 +4,6 @@ import Navbar from '../Navbar';
 import Auth from '../../lib/Auth';
 import MessageSelection from './MessageSelection';
 import MessagePanel from './MessagePanel';
-import MessageSent from './MessageSent';
 
 class Messaging extends React.Component {
 
@@ -35,10 +34,6 @@ class Messaging extends React.Component {
 
   handleChange = ({ target: { name, value } }) => {
     this.setState( { [name]: value });
-  }
-
-  handleSentClick = () => {
-    this.setState({ messageSent: false } );
   }
 
   getMessages = (messages) => {
@@ -85,7 +80,6 @@ class Messaging extends React.Component {
                 />
               </div>
               <div className="column is-three-quarters">
-                {this.state.messageSent && <MessageSent handleSentClick={this.handleSentClick} /> }
                 {!this.state.selectedMatch && <h1 className='featuretext darktext is-size-1'>Click on a match to see messages</h1>}
                 {this.state.selectedMatch && <h1 className='featuretext darktext is-size-1'>Your conversation with {this.state.selectedMatch.name}</h1>}
                 {this.state.selectedMatch && <MessagePanel
