@@ -32,7 +32,8 @@ class AuthRegister extends React.Component {
     }
 
     handleInterestChange = ({target: { name, value } }) => {
-      this.setState({ interests: { name, value } }, () => {
+      const interest = { ...this.state.interests, [name]: value };
+      this.setState({ interests: interest }, () => {
         console.log(this.state);
       });
     }
