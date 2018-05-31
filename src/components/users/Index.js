@@ -4,19 +4,28 @@ import {Link} from 'react-router-dom';
 import SortBar from './SortBar';
 import Navbar from '../Navbar';
 import _ from 'lodash';
+import Auth from '../../lib/Auth';
 
 class UsersIndex extends React.Component {
 
   state = {
     users: [],
     search: '',
-    sort: 'name|asc'
+    sort: 'name|asc',
+    currentUser: null
   }
 
   componentDidMount() {
     axios
       .get('api/users')
-      .then(res => this.setState({ users: res.data }));
+      .then(res => {
+        console.log(res.data);
+        const currentUser = res.data.filter(user => user._id === Auth.getPayload().sub)[0];
+        const otherUsers = res.data.filter(user => user._id !== Auth.getPayload().sub);
+        this.setState({ users: otherUsers, currentUser: currentUser }, () => {
+          console.log(this.state);
+        });
+      });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -60,6 +69,9 @@ class UsersIndex extends React.Component {
                       <p className="is-size-2 featuretext darktext">{user.name}</p>
                       <p className="is-size-3 featuretext darktext">{user.gender} - {user.age}</p>
                       <p className="is-size-3 featuretext darktext">Looking for {user.seeking}</p>
+                      <p className="is-size-3 featuretext darktext">
+                        {Object.values(user.interests).filter(interest => Object.values(this.state.currentUser.interests).includes(interest)).length*2}0% match
+                      </p>
                     </Link>
                   </div>
                 </div>
