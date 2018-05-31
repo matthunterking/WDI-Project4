@@ -50,7 +50,7 @@ class UsersEdit extends React.Component {
         <Navbar />
         <section className='section'>
           <div className="container">
-            <form onSubmit={this.handleSubmit}>
+            <form className="editform" onSubmit={this.handleSubmit}>
               <div className="field">
                 <input
                   className="input"
@@ -89,7 +89,7 @@ class UsersEdit extends React.Component {
                   className="select"
                   onChange={this.handleChange}
                   name="gender">
-                  <option selected value={user.gender}>{user.gender}</option>
+                  <option value={user.gender}>{user.gender}</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Non-binary">Non-binary</option>
@@ -104,7 +104,7 @@ class UsersEdit extends React.Component {
                   className="select"
                   onChange={this.handleChange}
                   name="seeking">
-                  <option selected value={user.seeking}>{user.seeking}</option>
+                  <option value={user.seeking}>{user.seeking}</option>
                   <option value="Men">Men</option>
                   <option value="Women">Women</option>
                   <option value="Both">Both</option>

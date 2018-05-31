@@ -33,7 +33,10 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item featuretext darktext">Destination ❤️ Love</Link>
+          {!Auth.isAuthenticated() &&
+            <Link to="/" className="navbar-item featuretext darktext">Destination ❤️ Love</Link>}
+          {Auth.isAuthenticated() &&
+              <a onClick={this.goToProfile} className="navbar-item featuretext darktext">Destination ❤️ Love</a> }
           <a role="button" className={`navbar-burger ${this.state.navIsOpen? 'is-active' : ''}`} onClick={this.handleToggle}>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
