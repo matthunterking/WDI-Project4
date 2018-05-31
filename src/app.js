@@ -17,6 +17,7 @@ import PlanDate from './components/common/PlanDate';
 import Messaging from './components/messaging/Messaging';
 import UsersEdit from './components/users/Edit';
 import FlashMessages from './components/common/FlashMessages';
+import NotFound from './components/common/NotFound';
 
 import 'bulma';
 import './scss/style.scss';
@@ -40,7 +41,8 @@ class App extends React.Component {
             <Route path="/plandate/:id" component={PlanDate} />
             <Route path="/users" component={UsersIndex} />
             <Route path="/register" component={AuthRegister} />
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route component={NotFound} />
           </Switch>
         </main>
       </Router>
