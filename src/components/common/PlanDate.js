@@ -2,6 +2,7 @@
 import React from 'react';
 import Auth from '../../lib/Auth';
 import axios from 'axios';
+import Navbar from '../Navbar';
 
 class PlanDate extends React.Component {
   constructor() {
@@ -267,19 +268,6 @@ class PlanDate extends React.Component {
     });
   }
 
-  // generateMarkers = () => {
-  //   if(!this.props.markers) return false;
-  //   this.markers.forEach(marker => marker.setMap(null));
-  //   this.markers = this.props.markers.map(marker => {
-  //     return new google.maps.Marker({
-  //       position: marker.location,
-  //       map: this.map,
-  //       label: '😍'
-  //     });
-  //   });
-  // }
-
-
   componentWillUnmount() {
     this.markers.forEach(marker => marker.setMap(null));
     this.markers = null;
@@ -291,24 +279,36 @@ class PlanDate extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="title is-1">Bars</h1>
-        <div className="map" ref={ el => this.mapDiv = el }></div>
-        <div className="container bars">
-          {!this.state.bars && <p>Loading...</p>}
-          <div className="columns is-multiline">
-            {this.state.bars && this.state.bars.map(bar =>
-              <div key={bar.name} className="card is-one-third-desktop is-half-tablet">
-                <div
-                  className="card-image"
-                  style={{ backgroundImage: `url(${bar.image})` }}
-                ></div>
-                <div className="card-content">
-                  <p className="subtitle is-7">{bar.name}</p>
+        <Navbar />
+        <section className='section'>
+          <div className="container">
+            <h1 className='darktext is-size-1 featuretext'>Bars</h1>
+            <hr />
+            <div className="profileFrame">
+              <div className="map" ref={ el => this.mapDiv = el }></div>
+              <div className="container bars">
+                {!this.state.bars && <p>Loading...</p>}
+                <div className="columns is-multiline">
+                  {this.state.bars && this.state.bars.map(bar =>
+                    <div key={bar.name} className="column is-one-quarter">
+                      <div className="card is-one-third-desktop is-half-tablet">
+                        <div className="imageFrame" style={{ backgroundImage: `url(${bar.image})`}}>
+                          <div className="indexContent has-text-centered">
+                            <p className='featuretext is-size-3'>{bar.name}</p>
+                            <p className='featuretext is-size-4'>{bar.address}</p>
+                          </div>
+                        </div>
+                        <div className="card-content">
+                          <p className="is-size-6 featuretext darktext">{bar.name}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     );
   }

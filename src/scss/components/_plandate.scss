@@ -1,6 +1,6 @@
 .map {
     margin-bottom: 50px;
-    height: 300px;
+    min-height: 400px;
 }
 
 .card-image {
@@ -12,5 +12,8 @@
 }
 
 div.card {
-  margin: 20px;
+  margin-right: 20px;
+  box-shadow: none;
+  border: 1px solid $navy;
+  border-radius: 10px;
 }
