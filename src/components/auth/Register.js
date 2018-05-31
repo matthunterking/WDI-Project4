@@ -31,14 +31,11 @@ class AuthRegister extends React.Component {
     }
 
     handleInterestChange = ({target: { name, value } }) => {
-      this.setState({ interests: { name, value } }, () => {
-        console.log(this.state);
-      });
+      this.setState({ interests: { name, value } });
     }
 
     handlePlaceChange = ({ formatted_address: address, geometry: { location }}) => {
-      this.setState({ address, location: location.toJSON() }, () =>
-        console.log(this.state));
+      this.setState({ address, location: location.toJSON() });
     }
 
     handleSubmit = (e) => {
@@ -50,7 +47,6 @@ class AuthRegister extends React.Component {
           Flash.setMessage('info', res.data.message);
         })
         .then(() => this.props.history.push('/users'))
-        .then(console.log(this.state))
         .catch(() => {
           Flash.setMessage('danger', 'Invalid credentials');
           this.props.history.replace('/register');

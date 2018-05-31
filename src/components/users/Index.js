@@ -11,8 +11,8 @@ class UsersIndex extends React.Component {
 
   state = {
     users: [],
-    search: '',
-    sort: 'name|asc',
+    searchGender: '',
+    searchAge: '',
     currentUser: null
   }
 
@@ -20,11 +20,9 @@ class UsersIndex extends React.Component {
     axios
       .get('api/users')
       .then(res => {
-        console.log(res.data);
         const currentUser = res.data.filter(user => user._id === Auth.getPayload().sub)[0];
         const otherUsers = res.data.filter(user => user._id !== Auth.getPayload().sub);
         this.setState({ users: otherUsers, currentUser: currentUser }, () => {
-          console.log(this.state);
         });
       });
   }
@@ -34,13 +32,19 @@ class UsersIndex extends React.Component {
   }
 
   sortedFilteredUsers = () => {
-    const [ field ] = this.state.sort.split('|');
-    const re = new RegExp(this.state.search, 'i');
-    const filtered = _.filter(this.state.users, user => {
-      return re.test(user.gender);
+    const filteredByGender = _.filter(this.state.users, user => {
+      if(! this.state.searchGender) return true;
+      return user.gender === this.state.searchGender;
     });
-    return _.orderBy(filtered, field);
+
+    if(!this.state.searchAge) return filteredByGender;
+
+    return _.filter(filteredByGender, user => {
+      const [min, max] = this.state.searchAge.split('-').map(Number);
+      return user.age >= min && user.age <= max;
+    });
   }
+
 
   render() {
     return (
@@ -73,10 +77,10 @@ class UsersIndex extends React.Component {
                       <p className="is-size-3 featuretext darktext">
                         {Object.values(user.interests).filter(interest => Object.values(this.state.currentUser.interests).includes(interest)).length*2}0% match
                       </p>
-                      <Compatibility
+                      {/* <Compatibility
                         userinterests={user.interests}
                         currentuserinterests={this.state.currentUser.interests}
-                      />
+                      /> */}
                     </Link>
                   </div>
                 </div>
