@@ -1,4 +1,3 @@
-@import '~bulma/sass/utilities/initial-variables';
 
 .home {
   background: linear-gradient(to top left, $lightpink, $pastelpink);
@@ -10,7 +9,7 @@
   background-image: url('/assets/homepage.jpg');
   background-position: center;
   background-size: cover;
-  @media screen and (max-width: $tablet - 1px) {
+  @media screen and (max-width: 600px) {
     display: none;
   }
 }
