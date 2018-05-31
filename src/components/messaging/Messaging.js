@@ -4,7 +4,6 @@ import Navbar from '../Navbar';
 import Auth from '../../lib/Auth';
 import MessageSelection from './MessageSelection';
 import MessagePanel from './MessagePanel';
-import MessageSent from './MessageSent';
 
 class Messaging extends React.Component {
 
@@ -37,17 +36,13 @@ class Messaging extends React.Component {
     this.setState( { [name]: value });
   }
 
-  handleSentClick = () => {
-    this.setState({ messageSent: false } );
-  }
-
   getMessages = (messages) => {
     const user1 = this.state.currentUser._id.toString();
     const user2 = this.state.selectedMatch._id.toString();
     const allmessages = messages.concat(this.state.selectedMatch.messages);
     const filteredmessages = allmessages.filter(message => {
       return (message.from._id === user1 && message.to._id === user2) || (message.from._id === user2 && message.to._id === user1);
-    }).sort((a, b) => a.sentAtRaw > b.sentAtRaw);
+    }).sort((a, b) => a.sentAtRaw < b.sentAtRaw);
     return filteredmessages;
   }
 
@@ -74,18 +69,19 @@ class Messaging extends React.Component {
         <Navbar />
         <section className='section'>
           <div className="container">
+            <h1 className='darktext is-size-1 featuretext'>{this.state.currentUser.name}s messages</h1>
+            <hr />
             <div className="columns">
               <div className="column is-one-quarter">
-                <h1 className='darktext is-size-1'>My Matches</h1>
+                <h1 className='darktext is-size-2 featuretext'>My Matches</h1>
                 <MessageSelection
                   currentUser={this.state.currentUser}
                   handleSelection={this.handleSelection}
                 />
               </div>
               <div className="column is-three-quarters">
-                {this.state.messageSent && <MessageSent handleSentClick={this.handleSentClick} /> }
-                {!this.state.selectedMatch && <h1 className='darktext is-size-1'>Click on a match to see messages</h1>}
-                {this.state.selectedMatch && <h1 className='darktext is-size-1'>Your conversation with {this.state.selectedMatch.name}</h1>}
+                {!this.state.selectedMatch && <h1 className='featuretext darktext is-size-1'>Click on a match to see messages</h1>}
+                {this.state.selectedMatch && <h1 className='featuretext darktext is-size-1'>Your conversation with {this.state.selectedMatch.name}</h1>}
                 {this.state.selectedMatch && <MessagePanel
                   messages={this.state.messages}
                   handleChange={this.handleChange}

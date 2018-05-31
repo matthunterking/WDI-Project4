@@ -17,7 +17,7 @@ class Home extends React.Component {
     axios
       .post('/api/login', this.state)
       .then(res =>  {
-        Auth.setToken(res.data.token);
+        Auth.login(res.data);
         Flash.setMessage('info', res.data.message);
       })
       .then(() => this.props.history.push('/users'))

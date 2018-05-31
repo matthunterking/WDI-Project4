@@ -1,29 +1,28 @@
 /* global google */
 import React from 'react';
+import Auth from '../../lib/Auth';
+import axios from 'axios';
 
 class PlanDate extends React.Component {
+  constructor() {
+    super();
+    this.markers = [];
+  }
 
   state = {
-    users: [{
-      name: 'bill',
-      location: {
-        lat: 51.5344,
-        lng: -0.0694
-      }
-    },{
-      name: 'bob',
-      location: {
-        lat: 51.5465,
-        lng: -0.1058
-      }
-    }]
+    match: {},
+    currentUser: {}
   };
 
 
   componentDidMount() {
+    axios
+      .get(`/api/users/${this.props.match.params.id}`)
+      .then(res => this.setState({ match: res.data, currentUser: Auth.getUser() }));
+
     this.map = new google.maps.Map(this.mapDiv, {
       center: { lat: 51.515, lng: -0.072 },
-      zoom: 14,
+      zoom: 12,
       styles: [
         {
           'featureType': 'road',
@@ -215,6 +214,9 @@ class PlanDate extends React.Component {
         }
       ]
     });
+  }
+
+  componentDidUpdate() {
 
     const centerMarker = new google.maps.InfoWindow({
       content: '⭐️',
@@ -222,28 +224,30 @@ class PlanDate extends React.Component {
     });
 
     this.marker1 = new google.maps.Marker({
-      position: this.state.users[0].location,
+      position: this.state.currentUser.location,
       map: this.map,
       label: '😍'
     });
+
     this.marker2 = new google.maps.Marker({
-      position: this.state.users[1].location,
+      position: this.state.match.location,
       map: this.map,
       label: '😍'
     });
 
     const center = google.maps.geometry.spherical.interpolate(this.marker1.position, this.marker2.position, 0.5);
-    console.log(`CENTER --> lat: ${center.lat()} long: ${center.lng()}`);
+
     centerMarker.setPosition(center);
     this.map.setCenter(center);
 
-    var service = new google.maps.places.PlacesService(this.map);
+    const service = new google.maps.places.PlacesService(this.map);
 
     service.nearbySearch({
       location: centerMarker.position,
       radius: 1000,
       keyword: ['bar']
     }, (results) => {
+      if(!results) return null;
       const cleanedResults = results.map(bar => {
         return ({
           name: bar.name,
@@ -263,17 +267,18 @@ class PlanDate extends React.Component {
     });
   }
 
-  generateMarkers = () => {
-    if(!this.props.markers) return false;
-    this.markers.forEach(marker => marker.setMap(null));
-    this.markers = this.props.markers.map(marker => {
-      return new google.maps.Marker({
-        position: marker.location,
-        map: this.map,
-        label: '😍'
-      });
-    });
-  }
+  // generateMarkers = () => {
+  //   if(!this.props.markers) return false;
+  //   this.markers.forEach(marker => marker.setMap(null));
+  //   this.markers = this.props.markers.map(marker => {
+  //     return new google.maps.Marker({
+  //       position: marker.location,
+  //       map: this.map,
+  //       label: '😍'
+  //     });
+  //   });
+  // }
+
 
   componentWillUnmount() {
     this.markers.forEach(marker => marker.setMap(null));

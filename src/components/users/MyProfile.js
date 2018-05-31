@@ -12,6 +12,7 @@ class UsersShow extends React.Component {
   };
 
   componentDidMount () {
+    console.log(Auth.getUser());
     axios
       .get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({ user: res.data }, () => {
@@ -63,18 +64,21 @@ class UsersShow extends React.Component {
         <section className='section'>
           <div className="container">
             <div>
-              <h1 className='darktext is-size-1 featureText'>{user.name}</h1>
-              <hr className='darktext' />
-              <div className="columns">
-                <div className="column is-one-quarter">
-                  <img src={user.image} />
+              <h1 className='darktext is-size-1 featuretext'>{user.name}</h1>
+              <hr />
+              <div className="columns profileFrame">
+                <div className="column">
+                  <div className="imageframeprofile" style={{ backgroundImage: `url(${user.image})`}}>
+                  </div>
                 </div>
-                <div className="column is-three-quarters profileContainer">
-                  <p className="is-size-4 standardText">About me: {user.bio}</p>
-                  <p className="is-size-4 standardText">Looking for: {user.seeking}</p>
-                  <p className="is-size-4 standardText">Age: {user.age}</p>
-                  <p className="is-size-4 standardText">Gender: {user.gender}</p>
-                  <p className="is-size-4 standardText">Matches: {user.acceptedMatchRequests.length}</p>
+                <div className="column profileContainer">
+                  <h1 className='is-size-2 featuretext darktext'>My details</h1>
+                  <hr />
+                  <p className="is-size-4 darktext standardText">{user.bio}</p>
+                  <p className="is-size-4 darktext standardText">Looking for: {user.seeking}</p>
+                  <p className="is-size-4 darktext standardText">Age: {user.age}</p>
+                  <p className="is-size-4 darktext standardText">Gender: {user.gender}</p>
+                  <p className="is-size-4 darktext standardText">Matches: {user.acceptedMatchRequests.length}</p>
                   <div className="registerNav">
                     <Link to={`/users/${user._id}/edit`}
                       className="button submitButton"
@@ -85,73 +89,99 @@ class UsersShow extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
-            <h1 className='darktext is-size-1 featureText'>Pending Match Requests</h1>
-            <hr className='darktext' />
-            {user.pendingMatchRequests.map(user =>
-              <div key={user._id}>
-                <div className="columns">
-                  <div className="column is-one-quarter">
-                    <img src={user.image} />
-                  </div>
-                  <div className="column is-one-half">
-                    <p className="is-size-4 featureText">{user.name}</p>
-                    <p className="is-size-4 standardText">{user.age}</p>
-                    <p className="is-size-4 standardText">{user.bio}</p>
-                  </div>
-                  <div className="column is-one-quarter">
-                    {user._id && <div>
-                      <button
-                        className="button redirectButton"
-                        onClick={this.handleMatchConfirm}
-                        name= {user._id}
-                      >Match with {user.name}
-                      </button>
-                      <button
-                        className="button redButton"
-                        onClick={this.handleMatchReject}
-                        name= {user._id}
-                      >Reject {user.name}</button>
-                    </div>}
-                  </div>
+              <div className="columns">
+                <div className="column">
+                  <h1 className='darktext is-size-2 featuretext'>Pending Match Requests</h1>
+                  <hr className='darktext' />
+                  {user.pendingMatchRequests.map(user =>
+                    <div key={user._id}>
+                      <Link
+                        to={`/users/viewprofile/${user._id}`}
+                        user={user}
+                      >
+                        <div className="columns profileFrame profileframesmall">
+                          <div className="column is-one-quarter">
+                            <img src={user.image} />
+                          </div>
+                          <div className="column is-one-half">
+                            <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                          </div>
+                          <div className="column is-one-quarter">
+                            {user._id && <div>
+                              <button
+                                className="button redirectButton"
+                                onClick={this.handleMatchConfirm}
+                                name= {user._id}
+                              >Match with {user.name}
+                              </button>
+                              <button
+                                className="button redButton"
+                                onClick={this.handleMatchReject}
+                                name= {user._id}
+                              >Reject {user.name}</button>
+                            </div>}
+                          </div>
+                        </div>
+                      </Link>
+                    </div> )}
+                  {user.sentMatchRequests.map(user =>
+                    <div key={user._id}>
+                      <Link
+                        to={`/users/viewprofile/${user._id}`}
+                        user={user}
+                      >
+                        <div className="columns profileFrame profileframesmall">
+                          <div className="column is-one-quarter">
+                            <img src={user.image} />
+                          </div>
+                          <div className="column is-one-half">
+                            <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                            <p className="is-size-4 darktext featuretext">Request Sent</p>
+                          </div>
+                          <div className="column is-one-quarter">
+                          </div>
+                        </div>
+                      </Link>
+                    </div> )}
                 </div>
-              </div> )}
+                <div className="column">
+                  <h1 className='darktext is-size-2 featuretext'>My Matches</h1>
+                  <hr />
+                  {user.acceptedMatchRequests.map(user =>
+                    <div key={user._id}>
+                      <Link
+                        to={`/users/viewprofile/${user._id}`}
+                        user={user}
+                      >
+                        <div className="columns profileFrame profileframesmall">
+                          <div className="column is-one-quarter">
+                            <img src={user.image} />
+                          </div>
+                          <div className="column is-one-half">
+                            <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                          </div>
+                          <div className="column is-one-quarter">
+
+
+
+                            <Link
+                              to={`/plandate/${user._id}`}
+                            >Plan a date with {user.name}</Link>
+
+
+
+                          </div>
+                        </div>
+                      </Link>
+                    </div> )}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
     );
   }
-
 }
-
-{/* <main>
-  <h1 className="title is-4"> <strong> Meet: </strong>  </h1>
-  <hr />
-
-  <img src={user.image} />
-  {!Auth.isCurrentUser(user) && <button onClick={this.handleMatchRequest}>Connect with {user.name}</button>}
-  <hr />
-
-
-  {user.pendingMatchRequests.map(user =>
-    <div key={user.userId.id}>
-      <p>{user.userId.name}</p>
-      <button
-        className="button is-primary"
-        onClick={this.handleMatchConfirm}
-        name= {user.userId._id}
-      >Match with {user.userId.name}
-      </button>
-      <button
-        className="button is-danger"
-        onClick={this.handleMatchReject}
-        name= {user.userId._id}
-      >Reject {user.userId.name}</button>
-    </div> )}
-  <button>Edit</button>
-  <button>Delete</button>
-  {Auth.isCurrentUser(user) && <Messages user={user}/> }
-  {!Auth.isCurrentUser(user) && <SendMessage user={user}/> }
-</main> */}
 
 export default UsersShow;
