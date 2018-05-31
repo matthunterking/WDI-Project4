@@ -12,6 +12,7 @@ class UsersShow extends React.Component {
   };
 
   componentDidMount () {
+    console.log(Auth.getUser());
     axios
       .get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({ user: res.data }, () => {
@@ -160,6 +161,15 @@ class UsersShow extends React.Component {
                             <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
                           </div>
                           <div className="column is-one-quarter">
+
+
+
+                            <Link
+                              to={`/plandate/${user._id}`}
+                            >Plan a date with {user.name}</Link>
+
+
+
                           </div>
                         </div>
                       </Link>
