@@ -4,6 +4,18 @@ const MessagePanel = ({ messages, handleChange, handleSubmit }) => {
 
   return (
     <div>
+      <div className='box'>
+        <form onSubmit={handleSubmit}>
+          <div className='columns'>
+            <div className='column is-four-fifths'>
+              <textarea className="textarea" onChange={handleChange} name="content" placeholder="message"/>
+            </div>
+            <div className='column is-one-fifth has-text-centered'>
+              <button className="button submitButton">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div>
         {messages.map(message =>
           <div key={message._id} className="box">
@@ -23,13 +35,8 @@ const MessagePanel = ({ messages, handleChange, handleSubmit }) => {
               </div>
             </article>
           </div>
-
         )}
       </div>
-      <form onSubmit={handleSubmit}>
-        <textarea onChange={handleChange} name="content" placeholder="message"/>
-        <button>Submit</button>
-      </form>
     </div>
   );
 };
