@@ -8,11 +8,12 @@ const MessageSelection = ({ currentUser, handleSelection }) => {
         <div key={user._id}>
           <div className="columns profileFrame profileframemessages"
             onClick={handleSelection}
+            id={user._id}
           >
-            <div className="column is-one-quarter" >
+            <div className="column is-one-quarter" id={user._id}>
               <img id={user._id} src={user.image} />
             </div>
-            <div className="column is-one-half" >
+            <div className="column is-one-half" id={user._id}>
               <p id={user._id} className="is-size-2 darktext featuretext">{user.name}</p>
             </div>
           </div>

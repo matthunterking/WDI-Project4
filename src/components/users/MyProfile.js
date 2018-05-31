@@ -95,84 +95,77 @@ class UsersShow extends React.Component {
                   <hr className='darktext' />
                   {user.pendingMatchRequests.map(user =>
                     <div key={user._id}>
-                      <Link
-                        to={`/users/viewprofile/${user._id}`}
-                        user={user}
-                      >
-                        <div className="columns profileFrame profileframesmall">
-                          <div className="column is-one-quarter">
-                            <img src={user.image} />
-                          </div>
-                          <div className="column is-one-half">
-                            <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
-                          </div>
-                          <div className="column is-one-quarter">
-                            {user._id && <div>
-                              <button
-                                className="button redirectButton"
-                                onClick={this.handleMatchConfirm}
-                                name= {user._id}
-                              >Match with {user.name}
-                              </button>
-                              <button
-                                className="button redButton"
-                                onClick={this.handleMatchReject}
-                                name= {user._id}
-                              >Reject {user.name}</button>
-                            </div>}
-                          </div>
+                      <div className="columns profileFrame profileframesmall">
+                        <div className="column is-one-quarter">
+                          <img src={user.image} />
                         </div>
-                      </Link>
+                        <div className="column is-one-half">
+                          <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                        </div>
+                        <div className="column is-one-quarter">
+                          {user._id && <div>
+                            <button
+                              className="button redirectButton"
+                              onClick={this.handleMatchConfirm}
+                              name= {user._id}
+                            >Match with {user.name}
+                            </button>
+                            <button
+                              className="button redButton"
+                              onClick={this.handleMatchReject}
+                              name= {user._id}
+                            >Reject {user.name}</button>
+                            <Link to={`/users/viewprofile/${user._id}`}
+                              user={user}
+                              className="button submitButton">View Profile
+                            </Link>
+                          </div>}
+                        </div>
+                      </div>
                     </div> )}
                   {user.sentMatchRequests.map(user =>
                     <div key={user._id}>
-                      <Link
-                        to={`/users/viewprofile/${user._id}`}
-                        user={user}
-                      >
-                        <div className="columns profileFrame profileframesmall">
-                          <div className="column is-one-quarter">
-                            <img src={user.image} />
-                          </div>
-                          <div className="column is-one-half">
-                            <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
-                            <p className="is-size-4 darktext featuretext">Request Sent</p>
-                          </div>
-                          <div className="column is-one-quarter">
-                          </div>
+                      <div className="columns profileFrame profileframesmall">
+                        <div className="column is-one-quarter">
+                          <img src={user.image} />
                         </div>
-                      </Link>
+                        <div className="column is-one-half">
+                          <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                          <p className="is-size-4 darktext featuretext">Request Sent</p>
+                        </div>
+                        <div className="column is-one-quarter">
+                        </div>
+                        <Link to={`/users/viewprofile/${user._id}`}
+                          user={user}
+                          className="button submitButton">View Profile
+                        </Link>
+                      </div>
                     </div> )}
                 </div>
                 <div className="column">
                   <h1 className='darktext is-size-2 featuretext'>My Matches</h1>
                   <hr />
                   {user.acceptedMatchRequests.map(user =>
-                    <div key={user._id}>
-                      <Link
-                        to={`/users/viewprofile/${user._id}`}
-                        user={user}
-                      >
-                        <div className="columns profileFrame profileframesmall">
-                          <div className="column is-one-quarter">
-                            <img src={user.image} />
-                          </div>
-                          <div className="column is-one-half">
-                            <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
-                          </div>
-                          <div className="column is-one-quarter">
-
-
-
-                            <Link
-                              to={`/plandate/${user._id}`}
-                            >Plan a date with {user.name}</Link>
-
-
-
-                          </div>
+                    <div key={user.id}>
+                      <div className="columns profileFrame profileframesmall">
+                        <div className="column is-one-quarter">
+                          <img src={user.image} />
                         </div>
-                      </Link>
+                        <div className="column is-one-quarter">
+                          <p className="is-size-2 darktext featuretext">{user.name}</p>
+                          <p className="is-size-2 darktext featuretext">{user.age}</p>
+                        </div>
+                        <div className="column is-one-half">
+                          <Link
+                            to={`/plandate/${user._id}`}
+                            className="button datebutton"
+                          >❤️ Plan a date with {user.name} ❤️</Link>
+                          <Link to={`/users/viewprofile/${user._id}`}
+                            user={user}
+                            className="button submitButton">View Profile
+                          </Link>
+                        </div>
+                      </div>
                     </div> )}
                 </div>
               </div>

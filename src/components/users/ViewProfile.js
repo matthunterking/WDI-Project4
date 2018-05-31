@@ -31,8 +31,6 @@ class ViewProfile extends React.Component {
     return user.pendingMatchRequests.find(() => loggedInUser);
   }
 
-
-
   render() {
     const { user } = this.state;
 

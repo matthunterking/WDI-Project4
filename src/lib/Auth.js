@@ -10,10 +10,10 @@ class Auth {
 
   static logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
   }
 
   static login(data) {
-    console.log('log in data =>', data);
     this.setToken(data.token);
     localStorage.setItem('currentUser', JSON.stringify(data.user));
   }
