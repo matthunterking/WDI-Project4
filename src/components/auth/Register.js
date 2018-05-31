@@ -120,7 +120,6 @@ class AuthRegister extends React.Component {
                       <option value="Non-binary">Non-binary</option>
                       <option value="Transgender">Transgender</option>
                       <option value="Other">Other</option>
-                      <option value="Prefer not to say">Prefer not to say</option>
                     </select>
                   </div>
                   <hr />
