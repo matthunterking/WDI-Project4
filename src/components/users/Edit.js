@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import ReactFilestack from 'filestack-react';
+import Navbar from '../Navbar';
+import AutoComplete from '../common/AutoComplete';
 // const filestackAPI = process.env.FILESTACK_API_KEY;
 
 const basicOptions = {
@@ -17,8 +19,7 @@ class UsersEdit extends React.Component {
       user: null,
       errors: null
     };
-  // when the component has mounted, make a request to get the info from the user
-  // it needs this to pre fill the form
+
     componentDidMount(){
       axios.get(`/api/users/${this.props.match.params.id}`)
         .then(res => this.setState(res.data, () => console.log(this.state)));
@@ -45,74 +46,96 @@ class UsersEdit extends React.Component {
     const user = this.state;
     if(!user) return null;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <input
-            className="input"
-            name="name"
-            placeholder="Email"
-            onChange={this.handleChange}
-            value={user.name}
-          />
-        </div>
-        <div className="field">
-          <input
-            className="input"
-            name="email"
-            placeholder="email"
-            onChange={this.handleChange}
-            value={user.email}
-          />
-        </div>
-        <label>Please select your gender
-        <select
-          className="select"
-          onChange={this.handleChange}
-          name="gender">
-          <option selected value={user.gender}>{user.gender}</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Non-binary">Non-binary</option>
-          <option value="Transgender">Transgender</option>
-          <option value="Other">Other</option>
-          <option value="Prefer not to say">Prefer not to say</option>
-        </select>
-        </label>
-        <hr />
-        <label>What are you seeking?
-        <select
-          className="select"
-          onChange={this.handleChange}
-          name="seeking">
-          <option selected value={user.seeking}>{user.seeking}</option>
-          <option value="Men">Men</option>
-          <option value="Women">Women</option>
-          <option value="Both">Both</option>
-        </select>
-        </label>
-        <hr />
-        <div className="field">
-          <input
-            type="textarea"
-            className="textarea"
-            name="bio"
-            placeholder="bio"
-            onChange={this.handleChange}
-            value={user.bio}
-          />
-        </div>
-        <ReactFilestack
-          apikey="AOMNdTfLRb2JoY4KejONwz"
-          buttonText="Upload Photo"
-          buttonClass="ui medium button gray"
-          options={basicOptions}
-          onSuccess={this.onSuccess}
-          onChange={this.handleChange}
-          onError={this.onError}
-        />
-
-        <button className="button is-primary">Submit</button>
-      </form>
+      <div>
+        <Navbar />
+        <section className='section'>
+          <div className="container">
+            <form className="editform" onSubmit={this.handleSubmit}>
+              <div className="field">
+                <input
+                  className="input"
+                  name="name"
+                  placeholder="Name"
+                  onChange={this.handleChange}
+                  value={user.name}
+                />
+              </div>
+              <div className="field">
+                <input
+                  className="input"
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                  value={user.email}
+                />
+              </div>
+              <div className="field">
+                <AutoComplete id="location" name="address" className="input" placeholder="Address" handlePlaceChange={this.handlePlaceChange} />
+              </div>
+              <div className="selectionField numberSelect">
+                <label htmlFor="age" className="standardtext">What is your age?</label>
+                <input
+                  className="select"
+                  type="number"
+                  onChange={this.handleChange}
+                  name="age"
+                  min="18"
+                  value={user.age}></input>
+              </div>
+              <hr />
+              <div className="selectionField">
+                <label htmlFor="gender" className="standardtext">Please select your gender</label>
+                <select
+                  className="select"
+                  onChange={this.handleChange}
+                  name="gender">
+                  <option value={user.gender}>{user.gender}</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Non-binary">Non-binary</option>
+                  <option value="Transgender">Transgender</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <hr />
+              <div className="selectionField">
+                <label htmlFor="seeking" className="standardtext">Who are you looking for?</label>
+                <select
+                  className="select"
+                  onChange={this.handleChange}
+                  name="seeking">
+                  <option value={user.seeking}>{user.seeking}</option>
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                  <option value="Both">Both</option>
+                </select>
+              </div>
+              <hr />
+              <div className="field">
+                <input
+                  type="textarea"
+                  className="textarea"
+                  name="bio"
+                  placeholder="bio"
+                  onChange={this.handleChange}
+                  value={user.bio}
+                />
+              </div>
+              <ReactFilestack
+                apikey="AOMNdTfLRb2JoY4KejONwz"
+                buttonText="Upload Photo"
+                buttonClass="button redirectButton"
+                options={basicOptions}
+                onSuccess={this.onSuccess}
+                onChange={this.handleChange}
+                onError={this.onError}
+              />
+              <hr />
+              <button className="button submitButton">Submit</button>
+            </form>
+          </div>
+        </section>
+      </div>
     );
   }
 

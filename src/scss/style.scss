@@ -1,27 +1,16 @@
 @import 'helpers/variables';
 @import 'helpers/typography';
+
 @import 'components/home';
+@import 'components/base';
 @import 'components/register';
+@import 'components/messages';
 @import 'components/index';
 @import 'components/profile';
 @import 'components/viewprofile';
+@import 'components/plandate';
+
 @import 'partials/buttons';
 @import 'partials/navbar';
-
-
-body {
-  background: linear-gradient(to top left, $lightpink, $pastelpink);
-  min-height: 100vh;
-  color: white;
-  box-sizing: border-box;
-}
-
-.title {
-  color: white;
-}
-
-
-
-.indexContent {
-  padding: 50px;
-}
+@import 'partials/forms';
+@import 'partials/flash';

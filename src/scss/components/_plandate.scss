@@ -1,0 +1,19 @@
+.map {
+    margin-bottom: 50px;
+    min-height: 400px;
+}
+
+.card-image {
+  height:300px;
+  width:300px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+div.card {
+  margin-right: 20px;
+  box-shadow: none;
+  border: 1px solid $navy;
+  border-radius: 10px;
+}

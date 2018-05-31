@@ -8,6 +8,11 @@ form {
   flex-direction: row;
 }
 
+input.select {
+  border-radius: 5px;
+  margin-left:50px;
+}
+
 select {
   min-width: 30%;
 }
@@ -20,3 +25,5 @@ select {
   justify-content: space-between;
   min-height: 50px;
 }
+
+.bottommargin { margin-bottom: 15px }

@@ -262,7 +262,7 @@ class PlanDate extends React.Component {
         return new google.maps.Marker({
           position: bar.location,
           map: this.map,
-          title: bar.name
+          label: '💛'
         });
       });
     });

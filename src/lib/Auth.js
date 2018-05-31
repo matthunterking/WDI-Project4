@@ -10,6 +10,16 @@ class Auth {
 
   static logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+  }
+
+  static login(data) {
+    this.setToken(data.token);
+    localStorage.setItem('currentUser', JSON.stringify(data.user));
+  }
+
+  static getUser() {
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
 
   static getPayload() {
@@ -28,8 +38,6 @@ class Auth {
   }
 
   static isCurrentUser(user) {
-    console.log(`user in is current user ${user}`);
-    console.log(`get payload ${this.getPayload().sub}`);
     return this.isAuthenticated() && user._id === this.getPayload().sub;
   }
 }

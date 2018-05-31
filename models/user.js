@@ -16,17 +16,18 @@ messageSchema.virtual('sentAtRelative')
     return moment(this.createdAt).fromNow();
   });
 
+messageSchema.virtual('sentAtRaw')
+  .get(function() {
+    return moment.unix(this.createdAt);
+  });
+
 messageSchema.set('toJSON', {
-  virtual: true,
+  virtuals: true,
   transform(doc, json) {
     delete json.createdAt;
     delete json.updatedAt;
     return json;
   }
-});
-
-const requestSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 const userSchema = new mongoose.Schema({
@@ -37,16 +38,17 @@ const userSchema = new mongoose.Schema({
   gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Transgender', 'Other', 'Prefer not to say']},
   seeking: { type: String, enum: ['Men', 'Women', 'Both'] },
   bio: { type: String },
+  address: { type: String },
   location: {
     lat: { type: Number },
     lng: { type: Number }
   },
   image: { type: String },
-  dateRequests: { type: String },
+  interests: { type: Object },
   messages: [ messageSchema ],
-  pendingMatchRequests: [ requestSchema ],
-  acceptedMatchRequests: [ requestSchema ],
-  sentMatchRequests: [ requestSchema ]
+  pendingMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
+  acceptedMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ],
+  sentMatchRequests: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ]
 });
 
 userSchema.plugin(require('mongoose-unique-validator'));
