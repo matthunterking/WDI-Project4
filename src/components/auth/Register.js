@@ -142,7 +142,7 @@ class AuthRegister extends React.Component {
                       onChange={this.handleChange}
                       name="age"
                       min="18"
-                      value="Age"></input>
+                    ></input>
                   </div>
                 </div>
               </div>

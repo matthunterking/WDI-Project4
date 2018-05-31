@@ -32,8 +32,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Men',
     location: {
-      lat: 51.5347,
-      lng: -0.0697
+      lat: 53.5367,
+      lng: -0.2762
     },
     bio: 'I enjoy writing and I am currently learning to code html',
     interests: { animals: 'dogs', evening: 'out', holiday: 'beach', food: 'takeaway', film: 'romantic'},
@@ -47,8 +47,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5342,
-      lng: -0.0692
+      lat: 52.5342,
+      lng: -0.0492
     },
     bio: 'I enjoy listening to music and I am currently learning to make baskets',
     interests: { animals: 'cats', evening: 'out', holiday: 'city', food: 'resturant', film: 'horror'},
@@ -62,8 +62,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5349,
-      lng: -0.0699
+      lat: 52.5349,
+      lng: -0.1599
     },
     bio: 'I enjoy comic books and I am currently learning to cook japanese food',
     interests: { animals: 'cats', evening: 'out', holiday: 'beach', food: 'takeaway', film: 'romantic'},
@@ -92,8 +92,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5342,
-      lng: -0.0693
+      lat: 52.5342,
+      lng: -0.7093
     },
     bio: 'Once I met a unicorn',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -108,7 +108,7 @@ mongoose.connect(dbURI, (err, db) => {
     seeking: 'Women',
     location: {
       lat: 51.5344,
-      lng: -0.0695
+      lng: -0.1000
     },
     bio: 'Once I met a unicorn',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -122,8 +122,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Men',
     location: {
-      lat: 51.5346,
-      lng: -0.0697
+      lat: 53.5346,
+      lng: -0.0787
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -137,8 +137,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5348,
-      lng: -0.0699
+      lat: 56.5348,
+      lng: 0.2069
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -152,8 +152,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5349,
-      lng: -0.0690
+      lat: 49.5349,
+      lng: -0.6567
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -167,8 +167,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5340,
-      lng: -0.0693
+      lat: 52.5340,
+      lng: -0.0976
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -182,8 +182,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5341,
-      lng: -0.0692
+      lat: 50.5341,
+      lng: -0.0765
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -197,8 +197,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5344,
-      lng: -0.0698
+      lat: 52.7344,
+      lng: -0.0487
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -212,8 +212,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5350,
-      lng: -0.0690
+      lat: 51.8350,
+      lng: -0.0999
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -227,8 +227,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Women',
     location: {
-      lat: 51.5342,
-      lng: -0.0695
+      lat: 50.5742,
+      lng: -0.0000
     },
     bio: '',
     interests: { animals: 'cats', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -242,8 +242,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5343,
-      lng: -0.0698
+      lat: 49.5343,
+      lng: -0.0012
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -257,8 +257,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5340,
-      lng: -0.0690
+      lat: 49.5340,
+      lng: -0.0213
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'beach', food: 'takeaway', film: 'romantic'},
@@ -272,8 +272,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5342,
-      lng: -0.0692
+      lat: 52.7642,
+      lng: -0.0742
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -287,8 +287,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5348,
-      lng: -0.0698
+      lat: 49.995,
+      lng: -0.1000
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -303,7 +303,7 @@ mongoose.connect(dbURI, (err, db) => {
     seeking: 'Women',
     location: {
       lat: 51.5344,
-      lng: -0.0694
+      lng: -0.8654
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -317,8 +317,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5345,
-      lng: -0.0689
+      lat: 51.9045,
+      lng: -0.1009
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -332,8 +332,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5340,
-      lng: -0.0697
+      lat: 50.5340,
+      lng: -0.2384
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -347,8 +347,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5343,
-      lng: -0.0692
+      lat: 51.0343,
+      lng: -1.0692
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -362,8 +362,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Women',
     location: {
-      lat: 51.5340,
-      lng: -0.0699
+      lat: 51.7940,
+      lng: -1.0699
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -377,8 +377,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5347,
-      lng: -0.0696
+      lat: 50.51247,
+      lng: -1.9996
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
@@ -392,8 +392,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Men',
     location: {
-      lat: 51.5345,
-      lng: -0.0694
+      lat: 51.0045,
+      lng: -0.7594
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
