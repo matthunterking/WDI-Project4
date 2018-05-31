@@ -88,7 +88,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'James',
     age: 34,
-    email: 'a@a.codrgsfdfem',
+    email: 'a@a.sdsafsadf',
     password: 'a',
     passwordConfirmation: 'a',
     gender: 'Male',
@@ -99,7 +99,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Susan',
     age: 22,
-    email: 'a@a.csodrgsdfem',
+    email: 'a@a.saddsv',
     password: 'a',
     passwordConfirmation: 'a',
     gender: 'Female',
@@ -176,7 +176,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Kate',
     age: 19,
-    email: 'a@a.codrgsdfem',
+    email: 'a@a.cdgjsc',
     password: 'a',
     passwordConfirmation: 'a',
     gender: 'Female',
