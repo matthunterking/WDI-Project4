@@ -42,7 +42,7 @@ class ViewProfile extends React.Component {
         <Navbar />
         <section className='section'>
           <div className="container">
-            <h1 className='darktext is-size-1'>Your matches</h1>
+            <h1 className='featuretext lighttext is-size-1'>Find your match</h1>
             <hr className='darktext' />
             <Link to={'/users'}>
               <div className="columns">
@@ -52,18 +52,17 @@ class ViewProfile extends React.Component {
                 />
                 <div className="column profilePanel rightpanel">
                   <div className="showtitle">
-                    <h1 className='is-size-2 featuretext darktext'>Meet</h1>
+                    <h1 className='is-size-2 featuretext darktext'>{user.name}</h1>
                     <button className="button featuretext backButton">X</button>
                   </div>
-                  <h1 className='is-size-1 featuretext darktext'>{user.name}</h1>
                   <div>
                     <p className="standardtext darktext is-size-4 bio">{user.bio}</p>
                   </div>
                   <div>
-                    <p className="darktext is-size-4"><strong>Age:</strong> {user.age}</p>
-                    <p className="darktext is-size-4"><strong>Gender:</strong> {user.gender}</p>
-                    <p className="darktext is-size-4"><strong>Location:</strong> {user.address}</p>
-                    <p className="darktext is-size-4"><strong>Seeking:</strong> {user.seeking}</p>
+                    <p className="darktext standardtext is-size-4"><strong>Age:</strong> {user.age}</p>
+                    <p className="darktext standardtext is-size-4"><strong>Gender:</strong> {user.gender}</p>
+                    <p className="darktext standardtext is-size-4"><strong>Location:</strong> {user.address}</p>
+                    <p className="darktext standardtext is-size-4"><strong>Seeking:</strong> {user.seeking}</p>
                   </div>
                   {this.matchRequestIsPending(user) && <p
                     className="featuretext darktext is-size-4 has-text-centered">

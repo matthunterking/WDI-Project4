@@ -52,7 +52,7 @@ class UsersIndex extends React.Component {
         <Navbar />
         <section className='section'>
           <div className="container">
-            <h1 className='featuretext lighttext is-size-1'>Find your Match</h1>
+            <h1 className='featuretext lighttext is-size-1'>Find your match</h1>
             <SortBar
               handleChange={this.handleChange}
               data={this.state}
