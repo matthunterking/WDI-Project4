@@ -20,8 +20,8 @@ describe('DELETE /users/:id', () => {
       User.remove({})
     ])
       .then(() => User.create(userData))
-      .then()
       .then(user => {
+        userId = user._id;
         token = jwt.sign({ sub: user._id}, secret, { expiresIn: '6h'});
       })
       .then(() => done());
@@ -31,6 +31,7 @@ describe('DELETE /users/:id', () => {
     api
       .delete(`/api/users/${userId}`)
       .set('Authorization', `Bearer ${token}`)
+      .send(userData)
       .end((err, res) => {
         expect(res.status).to.eq(204);
         done();
