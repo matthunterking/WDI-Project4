@@ -104,8 +104,8 @@ class AuthRegister extends React.Component {
                     <AutoComplete id="location" name="address" className="input" placeholder="Address" handlePlaceChange={this.handlePlaceChange} />
                   </div>
                 </div>
+                <br />
                 <div className='column'>
-                  <hr />
                   <div className="selectionField">
                     <label htmlFor="gender" className="standardtext">Please select your gender</label>
                     <select
@@ -134,6 +134,15 @@ class AuthRegister extends React.Component {
                     </select>
                   </div>
                   <hr />
+                  <div className="selectionField numberSelect">
+                    <label htmlFor="age" className="standardtext">What is your age?</label>
+                    <input
+                      className="select"
+                      type="number"
+                      onChange={this.handleChange}
+                      name="age"
+                      min="18"></input>
+                  </div>
                 </div>
               </div>
               <hr />
