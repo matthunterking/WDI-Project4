@@ -5,6 +5,7 @@ import SortBar from './SortBar';
 import Navbar from '../Navbar';
 import _ from 'lodash';
 import Auth from '../../lib/Auth';
+import Compatibility from './Compatibility/Compatibility';
 
 class UsersIndex extends React.Component {
 
@@ -72,6 +73,10 @@ class UsersIndex extends React.Component {
                       <p className="is-size-3 featuretext darktext">
                         {Object.values(user.interests).filter(interest => Object.values(this.state.currentUser.interests).includes(interest)).length*2}0% match
                       </p>
+                      <Compatibility
+                        userinterests={user.interests}
+                        currentuserinterests={this.state.currentUser.interests}
+                      />
                     </Link>
                   </div>
                 </div>
