@@ -398,6 +398,36 @@ mongoose.connect(dbURI, (err, db) => {
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
     image: 'http://www.attractivepartners.co.uk/wp-content/uploads/2017/06/profile.jpg'
+  },{
+    name: 'Sarah',
+    age: 28,
+    email: 'ac@a.sdjcbsadkbc',
+    password: 'a',
+    passwordConfirmation: 'a',
+    gender: 'Female',
+    seeking: 'Men',
+    location: {
+      lat: 51.0040,
+      lng: -0.7592
+    },
+    bio: '',
+    interests: { animals: 'dogs', evening: 'in', holiday: 'beach', food: 'takeaway', film: 'romantic'},
+    image: 'http://i.dailymail.co.uk/i/pix/2016/05/23/22/348B850600000578-3605456-image-m-32_1464040491071.jpg'
+  },{
+    name: 'Brian',
+    age: 34,
+    email: 'ac@a.dsafj',
+    password: 'a',
+    passwordConfirmation: 'a',
+    gender: 'Female',
+    seeking: 'Men',
+    location: {
+      lat: 51.0049,
+      lng: -0.7597
+    },
+    bio: '',
+    interests: { animals: 'cats', evening: 'out', holiday: 'city', food: 'takeaway', film: 'romantic'},
+    image: 'https://www.picmonkey.com/blog/wp-content/uploads/2016/11/1-intro-photo-final.jpg'
   }])
     .then(users => console.log(`${users.length} created`))
     .catch(err => console.log(err))
