@@ -134,7 +134,8 @@ function rejectMatchRequest(req, res, next) {
         rejectee: user.save()
       });
     })
-    .then(users => res.json(users.rejector))
+    .then(users => User.populate(users.accepter, { path: 'pendingMatchRequests acceptedMatchRequests sentMatchRequests' }))
+    .then(user => res.json(user))
     .catch(next);
 }
 

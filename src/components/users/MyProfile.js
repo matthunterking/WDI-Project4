@@ -15,9 +15,7 @@ class UsersShow extends React.Component {
     console.log(Auth.getUser());
     axios
       .get(`/api/users/${this.props.match.params.id}`)
-      .then(res => this.setState({ user: res.data }, () => {
-        console.log(this.state);
-      }));
+      .then(res => this.setState({ user: res.data }));
   }
 
   handleDelete = () => {
@@ -44,9 +42,7 @@ class UsersShow extends React.Component {
       .post(`/api/users/${e.target.name}/accept`, this.state, {
         headers: { Authorization: `Bearer ${Auth.getToken()}`}
       })
-      .then(res => this.setState({ user: res.data }, () => {
-        console.log(this.state);
-      }));
+      .then(res => this.setState({ user: res.data }));
   }
 
   handleMatchReject = (e) => {
