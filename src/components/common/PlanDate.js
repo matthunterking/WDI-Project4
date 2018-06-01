@@ -271,7 +271,8 @@ class PlanDate extends React.Component {
   componentWillUnmount() {
     this.markers.forEach(marker => marker.setMap(null));
     this.markers = null;
-    this.marker.setMap(null);
+    this.marker1.setMap(null);
+    this.marker2.setMap(null);
     this.market = null;
     this.map = null;
   }

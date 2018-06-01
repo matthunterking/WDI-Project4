@@ -114,7 +114,8 @@ function acceptMatchRequest(req, res, next) {
         acceptee: user.save()
       });
     })
-    .then(users => res.json(users.accepter))
+    .then(users => User.populate(users.accepter, { path: 'pendingMatchRequests acceptedMatchRequests sentMatchRequests' }))
+    .then(user => res.json(user))
     .catch(next);
 }
 
