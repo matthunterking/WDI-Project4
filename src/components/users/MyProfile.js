@@ -15,9 +15,7 @@ class UsersShow extends React.Component {
     console.log(Auth.getUser());
     axios
       .get(`/api/users/${this.props.match.params.id}`)
-      .then(res => this.setState({ user: res.data }, () => {
-        console.log(this.state);
-      }));
+      .then(res => this.setState({ user: res.data }));
   }
 
   handleDelete = () => {
@@ -93,50 +91,52 @@ class UsersShow extends React.Component {
                 <div className="column">
                   <h1 className='darktext is-size-2 featuretext'>Pending Match Requests</h1>
                   <hr className='darktext' />
-                  {user.pendingMatchRequests.map(user =>
-                    <div key={user._id}>
+                  {user.pendingMatchRequests.map(match =>
+                    <div key={match._id}>
                       <div className="columns profileFrame profileframesmall">
                         <div className="column is-one-quarter">
-                          <img src={user.image} />
+                          <img src={match.image} />
                         </div>
                         <div className="column is-one-half">
-                          <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                          <p className="is-size-2 darktext featuretext">{match.name}</p>
+                          <p className="is-size-2 darktext featuretext">{match.age}</p>
                         </div>
                         <div className="column is-one-quarter">
-                          {user._id && <div>
+                          {match._id && <div>
                             <button
                               className="button redirectButton"
                               onClick={this.handleMatchConfirm}
-                              name= {user._id}
-                            >Match with {user.name}
+                              name= {match._id}
+                            >Match with {match.name}
                             </button>
                             <button
                               className="button redButton"
                               onClick={this.handleMatchReject}
-                              name= {user._id}
-                            >Reject {user.name}</button>
-                            <Link to={`/users/viewprofile/${user._id}`}
-                              user={user}
+                              name= {match._id}
+                            >Reject {match.name}</button>
+                            <Link to={`/users/viewprofile/${match._id}`}
+                              user={match}
                               className="button submitButton">View Profile
                             </Link>
                           </div>}
                         </div>
                       </div>
                     </div> )}
-                  {user.sentMatchRequests.map(user =>
-                    <div key={user._id}>
+                  {user.sentMatchRequests.map(match =>
+                    <div key={match._id}>
                       <div className="columns profileFrame profileframesmall">
                         <div className="column is-one-quarter">
-                          <img src={user.image} />
+                          <img src={match.image} />
                         </div>
                         <div className="column is-one-half">
-                          <p className="is-size-2 darktext featuretext">{user.name} - {user.age}</p>
+                          <p className="is-size-2 darktext featuretext">{match.name}</p>
+                          <p className="is-size-2 darktext featuretext">{match.age}</p>
                           <p className="is-size-4 darktext featuretext">Request Sent</p>
                         </div>
                         <div className="column is-one-quarter">
                         </div>
-                        <Link to={`/users/viewprofile/${user._id}`}
-                          user={user}
+                        <Link to={`/users/viewprofile/${match._id}`}
+                          user={match}
                           className="button submitButton">View Profile
                         </Link>
                       </div>
@@ -145,23 +145,23 @@ class UsersShow extends React.Component {
                 <div className="column">
                   <h1 className='darktext is-size-2 featuretext'>My Matches</h1>
                   <hr />
-                  {user.acceptedMatchRequests.map(user =>
-                    <div key={user.id}>
+                  {user.acceptedMatchRequests.map(match =>
+                    <div key={match.id}>
                       <div className="columns profileFrame profileframesmall">
                         <div className="column is-one-quarter">
-                          <img src={user.image} />
+                          <img src={match.image} />
                         </div>
                         <div className="column is-one-quarter">
-                          <p className="is-size-2 darktext featuretext">{user.name}</p>
-                          <p className="is-size-2 darktext featuretext">{user.age}</p>
+                          <p className="is-size-2 darktext featuretext">{match.name}</p>
+                          <p className="is-size-2 darktext featuretext">{match.age}</p>
                         </div>
                         <div className="column is-one-half">
                           <Link
-                            to={`/plandate/${user._id}`}
+                            to={`/plandate/${match._id}`}
                             className="button datebutton"
-                          >❤️ Plan a date with {user.name} ❤️</Link>
-                          <Link to={`/users/viewprofile/${user._id}`}
-                            user={user}
+                          >❤️ Plan a date with {match.name} ❤️</Link>
+                          <Link to={`/users/viewprofile/${match._id}`}
+                            user={match}
                             className="button submitButton">View Profile
                           </Link>
                         </div>

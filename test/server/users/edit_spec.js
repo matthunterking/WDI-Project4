@@ -19,12 +19,13 @@ describe('edit /users/:id', () => {
     User.remove({})
       .then(() => User.create(userData))
       .then(user => {
+        userId = user._id;
         token = jwt.sign({ sub: user._id}, secret, { expiresIn: '6h'});
       })
       .then(() => done());
   });
 
-  it('should return a 201 response with a token', done => {
+  it('should return a 200 response with a token', done => {
     api
       .put(`/api/users/${userId}`)
       .set({
@@ -32,7 +33,7 @@ describe('edit /users/:id', () => {
       })
       .send(userData)
       .end((err, res) => {
-        expect(res.status).to.eq(201);
+        expect(res.status).to.eq(200);
         done();
       });
   });
