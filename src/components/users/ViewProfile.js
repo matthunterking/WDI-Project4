@@ -28,7 +28,7 @@ class ViewProfile extends React.Component {
 
   matchRequestIsPending = (user) => {
     const loggedInUser = Auth.getPayload().sub;
-    return user.pendingMatchRequests.find(() => loggedInUser);
+    return user.pendingMatchRequests.find(request => request._id === loggedInUser);
   }
 
   render() {
