@@ -40,8 +40,8 @@ const userSchema = new mongoose.Schema({
   bio: { type: String },
   address: { type: String },
   location: {
-    lat: { type: Number },
-    lng: { type: Number }
+    lat: { type: Number, required: 'This field is required.' },
+    lng: { type: Number, required: 'This field is required.' }
   },
   image: { type: String },
   interests: { type: Object },
