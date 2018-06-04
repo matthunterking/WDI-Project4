@@ -74,7 +74,7 @@ mongoose.connect(dbURI, (err, db) => {
     email: 'a@a.com',
     password: 'a',
     passwordConfirmation: 'a',
-    gender: 'Transgender',
+    gender: 'Female',
     seeking: 'Men',
     location: {
       lat: 51.5346,
