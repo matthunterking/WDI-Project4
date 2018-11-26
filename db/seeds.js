@@ -17,8 +17,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Female',
     seeking: 'Women',
     location: {
-      lat: 51.5342,
-      lng: -0.0696
+      lat: 51.5212,
+      lng: -0.0718
     },
     bio: 'I like long walks in the woods and cocktails',
     interests: { animals: 'cats', evening: 'in', holiday: 'beach', food: 'takeaway', film: 'romantic'},
@@ -32,8 +32,8 @@ mongoose.connect(dbURI, (err, db) => {
     gender: 'Male',
     seeking: 'Men',
     location: {
-      lat: 53.5367,
-      lng: -0.2762
+      lat: 51.4993,
+      lng: -0.1273
     },
     bio: 'I enjoy writing and I am currently learning to code html',
     interests: { animals: 'dogs', evening: 'out', holiday: 'beach', food: 'takeaway', film: 'romantic'},
