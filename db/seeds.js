@@ -251,9 +251,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Lisa',
     age: 19,
-    email: 'a@a.codrgsdfemu',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'lisa@destinationlove.com',
+    password: 'l',
+    passwordConfirmation: 'l',
     gender: 'Female',
     seeking: 'Men',
     location: {
