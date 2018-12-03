@@ -10,7 +10,7 @@ mongoose.connect(dbURI, (err, db) => {
 
   User.create([{
     name: 'Trisha',
-    email: 't@t.com',
+    email: 'trisha@destinationlove.com',
     age: 24,
     password: 't',
     passwordConfirmation: 't',
@@ -26,7 +26,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Ned',
     age: 27,
-    email: 'n@n.com',
+    email: 'ned@destinationlove.com',
     password: 'n',
     passwordConfirmation: 'n',
     gender: 'Male',
@@ -41,7 +41,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Sandy',
     age: 21,
-    email: 's@s.com',
+    email: 'sandy@destinationlove.com',
     password: 's',
     passwordConfirmation: 's',
     gender: 'Female',
@@ -56,7 +56,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Luke',
     age: 34,
-    email: 'l@l.com',
+    email: 'luke@destinationlove.com',
     password: 'l',
     passwordConfirmation: 'l',
     gender: 'Male',
@@ -71,7 +71,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Amanda',
     age: 37,
-    email: 'a@a.com',
+    email: 'amanda@destinationlove.com',
     password: 'a',
     passwordConfirmation: 'a',
     gender: 'Female',
@@ -86,9 +86,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Siobhan',
     age: 36,
-    email: 'a@a.codrgem',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'siobhan@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -101,9 +101,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Emily',
     age: 21,
-    email: 'a@a.codrgsdfekmonkm',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'emily@destinationlove.com',
+    password: 'e',
+    passwordConfirmation: 'e',
     gender: 'Female',
     seeking: 'Women',
     location: {
@@ -116,9 +116,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'James',
     age: 34,
-    email: 'a@a.sdsafsadf',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'james@destinationlove.com',
+    password: 'j',
+    passwordConfirmation: 'j',
     gender: 'Male',
     seeking: 'Men',
     location: {
@@ -127,13 +127,13 @@ mongoose.connect(dbURI, (err, db) => {
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
-    image: 'https://pbs.twimg.com/profile_images/792859737356324864/1YhUo05u_400x400.jpg'
+    image: 'https://www.thelocal.it/userdata/images/1368649381_fotoluca.jpg'
   },{
     name: 'Susan',
     age: 22,
-    email: 'a@a.saddsv',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'susan@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -142,13 +142,13 @@ mongoose.connect(dbURI, (err, db) => {
     },
     bio: '',
     interests: { animals: 'dogs', evening: 'in', holiday: 'city', food: 'takeaway', film: 'romantic'},
-    image: 'https://www.fotkaplus.co.uk/wp-content/uploads/2016/04/carousel-profile-4.jpg'
+    image: 'https://sites.google.com/site/australianwomendatingsites/_/rsrc/1459242937255/home/15.jpg'
   },{
     name: 'Nick',
     age: 18,
-    email: 'a@a.codrgsdfejm',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'nick@destinationlove.com',
+    password: 'n',
+    passwordConfirmation: 'n',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -161,9 +161,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Javi',
     age: 31,
-    email: 'a@a.codrgsdfegm',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'javi@destinationlove.com',
+    password: 'j',
+    passwordConfirmation: 'j',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -176,9 +176,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Cat',
     age: 22,
-    email: 'a@a.codrgsdefem',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'cat@destinationlove.com',
+    password: 'c',
+    passwordConfirmation: 'c',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -191,9 +191,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Josh',
     age: 34,
-    email: 'a@a.codrgsdfffemr',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'josh@destinationlove.com',
+    password: 'j',
+    passwordConfirmation: 'j',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -206,9 +206,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Pete',
     age: 26,
-    email: 'a@a.codrgsdfemt',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'pete@destinationlove.com',
+    password: 'p',
+    passwordConfirmation: 'p',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -221,11 +221,11 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Sally',
     age: 23,
-    email: 'a@a.codrgsdfemy',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'sally@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Female',
-    seeking: 'Women',
+    seeking: 'Both',
     location: {
       lat: 50.5742,
       lng: -0.0000
@@ -236,9 +236,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Kate',
     age: 19,
-    email: 'a@a.cdgjsc',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'kate@destinationlove.com',
+    password: 'k',
+    passwordConfirmation: 'k',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -255,7 +255,7 @@ mongoose.connect(dbURI, (err, db) => {
     password: 'l',
     passwordConfirmation: 'l',
     gender: 'Female',
-    seeking: 'Men',
+    seeking: 'Both',
     location: {
       lat: 49.5340,
       lng: -0.0213
@@ -266,9 +266,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Scotty',
     age: 25,
-    email: 'a@a.codrgsdfoooemi',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'scotty@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -281,9 +281,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Jake',
     age: 31,
-    email: 'a@as.codrgsdfems',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'jake@destinationlove.com',
+    password: 'j',
+    passwordConfirmation: 'j',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -296,9 +296,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Paul',
     age: 22,
-    email: 'a@as.codrgsdfemd',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'paul@destinationlove.com',
+    password: 'p',
+    passwordConfirmation: 'p',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -311,9 +311,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Scott',
     age: 19,
-    email: 'a@a.codrgsdfemf',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'scott@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -326,9 +326,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Rhiannon',
     age: 33,
-    email: 'aa@a.codrgsdfemg',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'rhiannon@destinationlove.com',
+    password: 'r',
+    passwordConfirmation: 'r',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -341,7 +341,7 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Alexandra',
     age: 24,
-    email: 'a@a.codrgsdfemh',
+    email: 'alexandra@destinationlove.com',
     password: 'a',
     passwordConfirmation: 'a',
     gender: 'Female',
@@ -356,9 +356,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Sam',
     age: 31,
-    email: 'a@ca.codrgsdfemi',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'sam@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Male',
     seeking: 'Women',
     location: {
@@ -371,9 +371,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Grace',
     age: 33,
-    email: 'a@a.codrgsdfemk',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'grace@destinationlove.com',
+    password: 'g',
+    passwordConfirmation: 'g',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -386,9 +386,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Ruby',
     age: 21,
-    email: 'ac@a.codrgsdfeml',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'ruby@destinationlove.com',
+    password: 'r',
+    passwordConfirmation: 'r',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -401,9 +401,9 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Sarah',
     age: 28,
-    email: 'ac@a.sdjcbsadkbc',
-    password: 'a',
-    passwordConfirmation: 'a',
+    email: 'sarah@destinationlove.com',
+    password: 's',
+    passwordConfirmation: 's',
     gender: 'Female',
     seeking: 'Men',
     location: {
@@ -416,10 +416,10 @@ mongoose.connect(dbURI, (err, db) => {
   },{
     name: 'Brian',
     age: 34,
-    email: 'ac@a.dsafj',
-    password: 'a',
-    passwordConfirmation: 'a',
-    gender: 'Female',
+    email: 'brian@destinationlove.com',
+    password: 'b',
+    passwordConfirmation: 'b',
+    gender: 'Male',
     seeking: 'Men',
     location: {
       lat: 51.0049,
